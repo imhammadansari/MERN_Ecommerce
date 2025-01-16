@@ -154,6 +154,7 @@ router.post("/products/:productid/review", isLoggedin, async function (req, res)
         res.send({ status: "ok", message: "Review added successfully" });
     } catch (error) {
         console.error(error);
+        console.log(error.message);
         res.status(500).send("Error adding review");
     }
 });

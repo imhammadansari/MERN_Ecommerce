@@ -46,38 +46,207 @@ const CategoryProducts = () => {
       case "kitchen":
         return "w-64 h-64";
       default:
-        return "w-64 h-64"; 
+        return "w-64 h-64";
     }
   };
 
   return (
     <>
       <Header />
-      <h1 className="text-center md:text-2xl font-bold md:my-4">{category}</h1>
-      <div className="w-full">
-        <div className="flex flex-wrap items-center justify-center px-6 py-4 gap-8 w-full">
+      <div className='w-full bg-slate-200 px-20 py-4'>
+      <div className="w-full flex">
+
+       <div className='flex flex-col'>
+         {/* Category Section */}
+         <div className='flex flex-col w-[15rem] border-t border-black'>
+      
+          <h1 className='font-bold text-start'>Category</h1>
+
+          <div className='text-start py-2'>
+            <p>Kitchen Accessory</p>
+            <p>Men's Fashion</p>
+            <p>Electronic</p>
+            <p>Women's Fashion</p>
+          </div>
+
+        </div>
+
+        {/* Brand Section */}
+        <div className='flex flex-col w-[15rem] mt-4 border-t border-black'>
+          <h1 className='font-bold text-start'>Brands</h1>
+
+          <div className='text-start py-2'>
+            <div className='flex'>
+              <input type='checkbox' />
+              <p className='px-1'>Samsung</p>
+            </div>
+
+            <div className='flex'>
+              <input type='checkbox' />
+              <p className='px-1'>Apple</p>
+            </div>
+
+            <div className='flex'>
+              <input type='checkbox' />
+              <p className='px-1'>Huawei</p>
+            </div>
+
+            <div className='flex'>
+              <input type='checkbox' />
+              <p className='px-1'>Pocco</p>
+            </div>
+
+            <div className='flex'>
+              <input type='checkbox' />
+              <p className='px-1'>Lenovo</p>
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* Features Section */}
+        <div className='flex flex-col w-[15rem] mt-4 border-t border-black'>
+          <h1 className='font-bold text-start'>Features</h1>
+
+          <div className='text-start py-2'>
+            <div className='flex'>
+              <input type='checkbox' />
+              <p className='px-1'>Metallic</p>
+            </div>
+
+            <div className='flex'>
+              <input type='checkbox' />
+              <p className='px-1'>Plastic</p>
+            </div>
+
+            <div className='flex'>
+              <input type='checkbox' />
+              <p className='px-1'>High Quality</p>
+            </div>
+
+            <div className='flex'>
+              <input type='checkbox' />
+              <p className='px-1'>Super Power</p>
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* Price Range */}
+        <div className='flex flex-col w-[15rem] mt-4 border-t border-black'>
+          <h1 className='font-bold text-start'>Price Range</h1>
+          <input className='py-2' type='range' />
+          <div className='flex gap-4'>
+
+            <div className='flex flex-col items-start'>
+              <p>Min</p>
+              <input type='text' placeholder='0' className='w-28 p-1 border border-opacity-25 border-black rounded' />
+            </div>
+
+            <div className='flex flex-col items-start'>
+              <p>Max</p>
+              <input type='text' placeholder='999999' className='w-28 p-1 rounded border border-opacity-25 border-black' />
+            </div>
+
+          </div>
+          <button className='w-full mt-2 border border-opacity-25 border-black bg-white rounded text-blue-700 h-8'>Apply</button>
+
+        </div>
+
+        {/* Condtion Section */}
+        <div className='flex flex-col w-[15rem] mt-4 border-t border-black'>
+          <h1 className='font-bold text-start'>Condition</h1>
+
+          <div className='text-start py-2'>
+            <div className='flex'>
+              <input type='checkbox' />
+              <p className='px-1'>Any</p>
+            </div>
+
+            <div className='flex'>
+              <input type='checkbox' />
+              <p className='px-1'>Refurbished</p>
+            </div>
+
+            <div className='flex'>
+              <input type='checkbox' />
+              <p className='px-1'>Brand New</p>
+            </div>
+
+            <div className='flex'>
+              <input type='checkbox' />
+              <p className='px-1'>Old Items</p>
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* Rating Section */}
+        <div className='flex flex-col w-[15rem] mt-4 border-t border-black'>
+          <h1 className='font-bold text-start'>Ratings</h1>
+
+          <div className='text-start py-2'>
+            <div className='flex'>
+              <input type='checkbox' />
+              <img className='w-24 px-2' src='/rating5.png' />
+            </div>
+
+            <div className='flex mt-2'>
+              <input type='checkbox' />
+              <img className='w-24 px-2' src='/rating4.png' />
+            </div>
+
+            <div className='flex mt-2'>
+              <input type='checkbox' />
+              <img className='w-24 px-2' src='/rating3.png' />
+            </div>
+
+            <div className='flex mt-2'>
+              <input type='checkbox' />
+              <img className='w-24 px-2' src='/rating2.png' />
+            </div>
+
+          </div>
+
+        </div>
+
+       </div>
+
+        <div className='flex flex-col'>
+
+        <h1 className="text-start font-bold bg-white w-full p-2 mx-1 rounded-sm border border-black border-opacity-15">{category}</h1>
+        <div className="flex flex-wrap items-center justify-center py-4 gap-4">
           {products?.map((item) => {
             const base64Image = Buffer.from(item.image).toString('base64');
             return (
-              <div className="flex flex-col items-center w-[18.7rem]" key={item._id}>
-                <div className={`${getDynamicStyles(category)} bg-white mb-2 md:mb-0 flex justify-center items-center`}>
+              <div className="flex flex-col items-center bg-white w-[18.7rem] h-[25rem]" key={item._id}>
+                <div className={`${getDynamicStyles(category)} bg-white mb-2 md:mb-0 flex justify-center`}>
                   <img
-                    className="max-w-full max-h-full object-contain"
+                    className="w-[10rem] max-h-full object-contain"
                     src={`data:image/jpeg;base64,${base64Image}`}
                     alt={item.name}
                   />
                 </div>
                 <Link to={`/items/${item._id}`}>
-                  <p className="mt-1 md:mt-4 w-64 text-sm text-start">{item.name}</p>
-                  <p className="mt-1 w-64 text-sm text-start text-gray-500">{item.brand}</p>
-                  <p className="mt-2 flex text-start text-lg text-red-600">Rs. {item.price}</p>
-                  <p className="mt-1 w-64 text-sm text-start text-gray-500">Buy it Now</p>
-                  <p className="mt-1 w-64 text-sm text-start text-gray-500">Free Returns</p>
+                  <p className="flex text-start text-lg font-bold">Rs. {item.price}</p>
+                  <div className='flex gap-2 items-center'>
+                    <img className='w-16' src='/rating.png' />
+                    <p>7.5</p>
+                  </div>
+                  <p className="mt-1 w-64 text-sm text-start">{item.name}</p>
+
                 </Link>
               </div>
             );
           })}
         </div>
+
+        </div>
+      </div>
+
       </div>
       <Footer />
     </>

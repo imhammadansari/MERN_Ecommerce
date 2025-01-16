@@ -10,8 +10,15 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 const Categories = () => {
     return (
-        <div className='w-full'>
-            <div className='items-center px-4 py-4 text-lg lg:text-xl xl:text-xl'>
+        <div className='w-full bg-slate-200'>
+            <div className='w-full px-20 py-4 bg-white'>
+                <h1 className='font-bold text-xl'>Recommended Items</h1>
+                
+
+            </div>
+
+            <div></div>
+            {/* <div className='items-center px-4 py-4 text-lg lg:text-xl xl:text-xl'>
                 <h1 className='text-center mb-10 text-lg md:text-xl lg:text-3xl font-bold'>Best Categories</h1>
                 <div>
                     <Swiper
@@ -72,7 +79,7 @@ const Categories = () => {
                         </SwiperSlide>
                     </Swiper>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 }

@@ -14,9 +14,70 @@ const Banner = () => {
 
     return (
         <>
-            <div className='w-full'>
+            <div className='w-full bg-slate-200 md:px-20 md:py-4'>
+                <div className='w-full flex bg-white'>
 
-                <div className='mt-2'>
+                <div className='w-[15rem] hidden lg:block text-start px-2 py-2'>
+                    <p className='pb-1 bg-slate-200 rounded p-1'>Automobiles</p>
+                    <p className='pb-1 p-1'>Clothes and wear</p>
+                    <p className='pb-1 p-1'>Home interiors</p>
+                    <p className='pb-1 p-1'>Computer and tech</p>
+                    <p className='pb-1 p-1'>Tools, equipements</p>
+                    <p className='pb-1 p-1'>Sports and outdoor</p>
+                    <p className='pb-1 p-1'>Animal and pets</p>
+                    <p className='pb-1 p-1'>Mechinery tools</p>
+                    <p className='pb-1 p-1'>More category</p>
+                
+
+                </div>
+
+                <div className='py-2'>
+                    <img src='/banner.png' />
+                </div>
+
+
+                <div className='w-[17.5rem] hidden lg:block px-2 py-2'>
+
+                <div className='bg-blue-200 w-full rounded h-[10rem] px-2 py-2'>
+                    <div className='flex'>
+                    <img src='Avatar.png' />
+                    <div className='flex flex-col text-start pl-4'>
+                    <p>Hi, user</p>
+                    <p>let's get started </p>
+                    </div>
+                    
+                    </div>
+                    <button className='w-full text-white rounded mt-2 bg-blue-600 h-9'>Join Now</button>
+                    <button className='w-full text-blue-600 rounded mt-2 bg-white h-9'>Log in</button>
+                </div>
+
+                <div>
+                    <div className='bg-orange-500 text-start text-white w-full rounded h-[6.2rem] px-2 py-2 mt-2'>
+                        <p>Get US $10 off</p>
+                        <p>with a new</p>
+                        <p>supplier</p>
+                    </div>
+
+                </div>
+                
+                <div>
+                    <div className='bg-green-600 text-start text-white w-full rounded h-[6.1rem] px-2 py-2 mt-2'>
+                        <p>Send quotes with</p>
+                        <p>supplier</p>
+                        <p>preferences</p>
+                    </div>
+
+                </div>
+
+
+                </div>
+
+
+
+                
+                </div>
+
+                {/* <div className='mt-2'>
                     <Swiper
                         spaceBetween={30}
                         centeredSlides={true}
@@ -36,7 +97,7 @@ const Banner = () => {
 
                     </Swiper>
 
-                </div>
+                </div> */}
 
             </div>
         </>

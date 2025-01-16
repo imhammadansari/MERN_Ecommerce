@@ -12,6 +12,7 @@ import HomePage from './pages/HomePage';
 import ReturnPolicy from './pages/ReturnPolicy';
 import CategoryProducts from './pages/CategoryProducts';
 import ProductDetails from './pages/ProductsDetails';
+import Practice from './pages/Practice';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         <Route path='/checkout' element = { <Checkout /> } />
         <Route path='/orderdetails' element = { <OrderDetails /> } />
         <Route path='/logout' element = { <Logout /> } />
+        <Route path='/practice' element = { <Practice /> } />
       </Routes>
 
     </div>

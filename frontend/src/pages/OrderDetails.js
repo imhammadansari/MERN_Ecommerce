@@ -51,13 +51,13 @@ function OrderDetails() {
                 
                 <img className='w-40 h-36 mt-6 sm:mt-0' src={`data:image/jpeg;base64,${base64Image}`} alt={product.name} />
                 <p className='text-lg'>{product.name}</p>
-                <p className='text-lg'>Price: ${product.productId.price}</p>
+                <p className='text-lg'>Price: Rs. {product.productId.price}</p>
                 <p className='text-lg'>Quantity: {product.quantity}</p>
               </div>
             );
           })}
 
-          <p className='text-2xl font-bold mt-4 text-center'>Total Price: ${order.totalPrice}</p>
+          <p className='text-2xl font-bold mt-4 text-center'>Total Price: Rs. {order.totalPrice}</p>
         </div>
       ))}
     </div>

@@ -30,26 +30,25 @@ const BestProducts = () => {
 
   return (
     <>
-      <h1 className="text-center md:mb-10 text-lg md:text-xl lg:text-3xl font-bold">Best Seller</h1>
-      <div className="w-full">
-        <div className="flex flex-wrap items-center justify-center px-6 py-4 gap-8 w-full">
+      <div className="w-full bg-slate-200 px-4 lg:px-20 py-2 lg:py-4">
+      <h1 className="text-start md:mb-4 text-base md:text-xl lg:text-xl font-bold">Recommended Items</h1>
+        <div className="flex flex-wrap gap-2 lg:gap-8 w-full">
         {products?.map((item) => {
   const base64Image = Buffer.from(item.image).toString('base64');
   return (
-    <div className="flex flex-col items-center w-[18.7rem]" key={item._id}>
-      <div className="bg-white flex justify-center items-center">
+    <div className="flex flex-col items-center bg-white w-[11rem] lg:w-[13.15rem]" key={item._id}>
+      <div className="bg-white flex justify-center px-2 py-4 items-center">
         <img
-          className="w-56 h-56 object-contain" // Adjusted size
+          className="w-28 h-28 object-contain"
           src={`data:image/jpeg;base64,${base64Image}`}
           alt={item.name}
         />
       </div>
-      <Link to={`/items/${item._id}`}>
-        <p className="mt-4 w-56 text-sm text-start">{item.name}</p>
-        <p className="mt-1 w-56 text-sm text-start text-gray-500">{item.brand}</p>
-        <p className="mt-2 flex text-start text-lg text-red-600">Rs. {item.price}</p>
-        <p className="mt-1 w-56 text-sm text-start text-gray-500">Buy it Now</p>
-        <p className="mt-1 w-56 text-sm text-start text-gray-500">Free Returns</p>
+      <Link className='px-2 py-2' to={`/items/${item._id}`}>
+        <p className="mt-2 flex text-start text-base">${item.price}</p>
+        <p className="mt-1 lg:w-44 text-xs text-start">{item.name}</p> 
+        {/* 8B96A5 */}
+
       </Link>
     </div>
   );

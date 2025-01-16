@@ -30,7 +30,7 @@ router.post("/addproducts", upload.single("image"), async function (req, res) {
             bestseller
         });
 
-        res.status(201).json({
+        res.status(200).json({
             message: "Product added successfully",
             product: product
         });

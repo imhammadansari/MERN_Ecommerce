@@ -15,6 +15,8 @@ function Products() {
   const [size, setsize] = useState("")
   const [discount, setdiscount] = useState("");
   const [category, setcategory] = useState("");
+  const [bestseller, setbestseller] = useState("");
+  const [unitcount, setunitcount] = useState("");
 
   const submit = async (e) => {
     e.preventDefault();
@@ -23,18 +25,20 @@ function Products() {
     formData.append("image", image);
     formData.append("name", name);
     formData.append("price", price);
-    formData.append("price", price);
-    formData.append("brand", brand);
     formData.append("description", description);
-    formData.append("color", color);
+    formData.append("brand", brand);
     formData.append("material", material);
+    formData.append("color", color);
+    formData.append("unitcount", unitcount);
     formData.append("dimensions", dimensions);
     formData.append("weight", weight);
     formData.append("size", size);
     formData.append("discount", discount);
+    formData.append("bestseller", bestseller);
     formData.append("category", category);
 
-    console.log(image, name, price, discount, category);
+    console.log(image, name, price, description, brand, discount, material, color, unitcount, dimensions, weight, size, 
+      discount, category, bestseller);
 
     try {
       const response = await axios.post("http://localhost:8080/products/addproducts", 
@@ -44,7 +48,7 @@ function Products() {
         }
       );
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         alert("Product Added Successfully");
       }
 
@@ -94,6 +98,10 @@ function Products() {
               setcolor(e.target.value);
             }} />
             
+            <input className='w-96 p-1 bg-black bg-opacity-10' type='text' placeholder='Enter unitcount' name='unitcount' onChange={(e) => {
+              setunitcount(e.target.value);
+            }} />
+            
             <input className='w-96 p-1 bg-black bg-opacity-10' type='text' placeholder='Enter Material' name='material' onChange={(e) => {
               setmaterial(e.target.value);
             }} />
@@ -114,21 +122,25 @@ function Products() {
               setdescription(e.target.value);
             }} />
 
+            <input className='w-96 p-1 bg-black bg-opacity-10' type='text' placeholder='Enter Bestseller' name='bestseller' onChange={(e) => {
+              setbestseller(e.target.value);
+            }} />
+
             
             <select className='bg-black bg-opacity-10 p-1' onChange={(e) => {
               setcategory(e.target.value);
             }}>
-              <option>Category</option>
-              <option>Kitchen Accessories</option>
-              <option>Men Fashion</option>
-              <option>Men Jeans</option>
-              <option>Men Shoes</option>
-              <option>Men Watches</option>
-              <option>Electronics</option>
-              <option>Women Fashion</option>
-              <option>Women Shoes</option>
-              <option>Household Accessories</option>
-              <option>Sports & Outdoors</option>
+              <option value="">Select Category</option>
+  <option value="Kitchen Accessories">Kitchen Accessories</option>
+  <option value="Men Fashion">Men Fashion</option>
+  <option value="Men Jeans">Men Jeans</option>
+  <option value="Men Shoes">Men Shoes</option>
+  <option value="Men Watches">Men Watches</option>
+  <option value="Electronics">Electronics</option>
+  <option value="Women Fashion">Women Fashion</option>
+  <option value="Women Shoes">Women Shoes</option>
+  <option value="Household Accessories">Household Accessories</option>
+  <option value="Sports & Outdoors">Sports & Outdoors</option>
             </select>
 
             <button type='submit' className='w-32 h-9 mt-5 bg-black bg-opacity-10'>Add Product</button>
