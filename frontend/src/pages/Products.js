@@ -40,6 +40,8 @@ function Products() {
     console.log(image, name, price, description, brand, discount, material, color, unitcount, dimensions, weight, size, 
       discount, category, bestseller);
 
+    axios.defaults.withCredentials = true;
+
     try {
       const response = await axios.post("http://localhost:8080/products/addproducts", 
         formData,
@@ -73,61 +75,64 @@ function Products() {
   return (
     <>
       <div className='w-full'>
-        <div className='flex flex-col items-start px-10 py-4'>
+        <div className='flex flex-col items-start px-4 lg:px-8 py-4'>
           <h1 className='font-bold text-xl'>Add Products</h1>
           <form className='mt-6 flex flex-col gap-3' onSubmit={submit}>
 
-            <input className='text-xs' type='file' name='image' onChange={(e) => {
+            <input className='text-xs lg:text-base p-2 w-[10rem] lg:w-[40rem]' value={image} type='file' name='image' onChange={(e) => {
               setimage(e.target.files[0]);
             }} />
-            <input className='w-96 p-1 bg-black bg-opacity-10' type='text' placeholder='Enter Title' name='title' onChange={(e) => {
+
+            <div className='flex gap-2'>
+            <input className='text-xs lg:text-base border rounded p-2 w-[10rem] lg:w-[40rem]' value={name} type='text' placeholder='Enter Title' name='title' onChange={(e) => {
               setname(e.target.value);
             }} />
-            <input className='w-96 p-1 bg-black bg-opacity-10' type='number' placeholder='Enter Price' name='price' onChange={(e) => {
+
+            <input className='text-xs lg:text-base border rounded p-2 w-[10rem] lg:w-[40rem]' value={price} type='number' placeholder='Enter Price' name='price' onChange={(e) => {
               setprice(e.target.value);
             }} />
-            <input className='w-96 p-1 bg-black bg-opacity-10' type='number' placeholder='Enter Discount' name='discount' onChange={(e) => {
+            </div>
+
+            <div className='flex gap-2'>
+            <input className='text-xs lg:text-base border rounded p-2 w-[10rem] lg:w-[40rem]' value={discount} type='number' placeholder='Enter Discount' name='discount' onChange={(e) => {
               setdiscount(e.target.value);
             }} />
-            
-            <input className='w-96 p-1 bg-black bg-opacity-10' type='text' placeholder='Enter Brand' name='brand' onChange={(e) => {
+
+            <input className='text-xs lg:text-base border rounded p-2 w-[10rem] lg:w-[40rem]' value={brand} type='text' placeholder='Enter Brand' name='brand' onChange={(e) => {
               setbrand(e.target.value);
             }} />
+            </div>
             
-            <input className='w-96 p-1 bg-black bg-opacity-10' type='text' placeholder='Enter color' name='color' onChange={(e) => {
+            <div className='flex gap-2'>
+            <input className='text-xs lg:text-base border rounded p-2 w-[10rem] lg:w-[40rem]' value={color} type='text' placeholder='Enter color' name='color' onChange={(e) => {
               setcolor(e.target.value);
             }} />
-            
-            <input className='w-96 p-1 bg-black bg-opacity-10' type='text' placeholder='Enter unitcount' name='unitcount' onChange={(e) => {
+            <input className='text-xs lg:text-base border rounded p-2 w-[10rem] lg:w-[40rem]' value={unitcount} type='text' placeholder='Enter unitcount' name='unitcount' onChange={(e) => {
               setunitcount(e.target.value);
             }} />
-            
-            <input className='w-96 p-1 bg-black bg-opacity-10' type='text' placeholder='Enter Material' name='material' onChange={(e) => {
+            </div>
+
+            <div className='flex gap-2'>
+            <input className='text-xs lg:text-base border rounded p-2 w-[10rem] lg:w-[40rem]' value={material} placeholder='Enter Material' name='material' onChange={(e) => {
               setmaterial(e.target.value);
             }} />
-            
-            <input className='w-96 p-1 bg-black bg-opacity-10' type='text' placeholder='Enter Dimensions' name='dimensions' onChange={(e) => {
+            <input className='text-xs lg:text-base border rounded p-2 w-[10rem] lg:w-[40rem]' value={dimensions} type='text' placeholder='Enter Dimensions' name='dimensions' onChange={(e) => {
               setdimensions(e.target.value);
             }} />
+            </div>
             
-            <input className='w-96 p-1 bg-black bg-opacity-10' type='text' placeholder='Enter Weight' name='weight' onChange={(e) => {
+            <div className='flex gap-2'>
+            <input className='text-xs lg:text-base border rounded p-2 w-[10rem] lg:w-[40rem]' value={weight} type='text' placeholder='Enter Weight' name='weight' onChange={(e) => {
               setweight(e.target.value);
             }} />
-            
-            <input className='w-96 p-1 bg-black bg-opacity-10' type='text' placeholder='Enter Size' name='size' onChange={(e) => {
+            <input className='text-xs lg:text-base border rounded p-2 w-[10rem] lg:w-[40rem]' value={size} type='text' placeholder='Enter Size' name='size' onChange={(e) => {
               setsize(e.target.value);
             }} />
+            </div>
             
-            <input className='w-96 p-1 bg-black bg-opacity-10' type='text' placeholder='Enter Description' name='description' onChange={(e) => {
-              setdescription(e.target.value);
-            }} />
-
-            <input className='w-96 p-1 bg-black bg-opacity-10' type='text' placeholder='Enter Bestseller' name='bestseller' onChange={(e) => {
-              setbestseller(e.target.value);
-            }} />
-
+            <div className='flex gap-2'>
             
-            <select className='bg-black bg-opacity-10 p-1' onChange={(e) => {
+            <select className='text-xs lg:text-base p-2 border rounded w-[10rem] lg:w-[40rem]' value={category} onChange={(e) => {
               setcategory(e.target.value);
             }}>
               <option value="">Select Category</option>
@@ -142,6 +147,21 @@ function Products() {
   <option value="Household Accessories">Household Accessories</option>
   <option value="Sports & Outdoors">Sports & Outdoors</option>
             </select>
+         <label className='flex items-center gap-2'>
+          <input 
+            type="checkbox"
+            name="bestseller"
+            checked={bestseller}
+            onChange={(e) => setbestseller(e.target.checked)}
+          />
+          Bestseller
+        </label>
+            </div>
+
+            <textarea name="description" value={description} onChange={(e) => setdescription(e.target.value)} placeholder="Description"
+            className="p-2 border rounded"
+            />
+            
 
             <button type='submit' className='w-32 h-9 mt-5 bg-black bg-opacity-10'>Add Product</button>
           </form>

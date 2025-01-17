@@ -9,15 +9,10 @@ const MobileNavbar = ({ onClose }) => {
           <div className="w-full h-[6rem] justify-center px-4 py-2 bg-black flex flex-col gap-2 bg-opacity-30">
             <div className="flex justify-between">
               <img className="w-12" src="Avatar.png" alt="Avatar" />
-              {/* <button
-                className="px-2 bg-black text-xs text-white"
-                onClick={onClose} // Call onClose to hide the navbar
-              >
-                Close
-              </button> */}
+              
             </div>
             <h1 className="flex items-start">
-              <Link to="/login">Log in</Link> | <Link to="/signin">Register</Link>
+              <Link to="/login">Log in</Link> | <Link to="/signup">Register</Link>
             </h1>
           </div>
 
@@ -27,7 +22,7 @@ const MobileNavbar = ({ onClose }) => {
                 <Link to="/home">Home</Link>
               </li>
               <li className="flex">
-                <Link to="/returnpolicy">Profile</Link>
+                <Link to="/returnpolicy">Return Policy</Link>
               </li>
               <li className="flex">
                 <Link to="/orderdetails">Orders</Link>

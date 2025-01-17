@@ -13,6 +13,8 @@ import ReturnPolicy from './pages/ReturnPolicy';
 import CategoryProducts from './pages/CategoryProducts';
 import ProductDetails from './pages/ProductsDetails';
 import Practice from './pages/Practice';
+import EditProducts from './pages/EditProducts';
+import AllProductsForAdmin from './pages/AllProductsForAdmin';
 
 
 function App() {
@@ -26,7 +28,9 @@ function App() {
         <Route path='/signup' element = {<Signup/>} />  
         <Route path='/login' element = {<Login />} />
         <Route path="/products/:category" element={<CategoryProducts />} />
-        <Route path='/products' element = {<Products />} />
+        <Route path='/addproducts' element = {<Products />} />
+        <Route path='/allproducts' element = {<AllProductsForAdmin />} />
+        <Route path='/editproducts/:id' element = {<EditProducts />} />
         <Route path='/items/:productid' element={<ProductDetails />} />
         <Route path='/returnpolicy' element = {<ReturnPolicy />} />
         <Route path='/shop' element = {<Shop />} />

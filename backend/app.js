@@ -134,7 +134,9 @@ router.delete("/removeFromCart/:productid", isLoggedin, async function (req, res
 router.post("/products/:productid/review", isLoggedin, async function (req, res) {
     try {
         const { name, comments, rating } = req.body;
+        console.log("Details: ", name, comments, rating);
 
+        // Validate inputs
         if (!name || !comments || !rating) {
             return res.status(400).send("All fields are required");
         }
@@ -143,18 +145,20 @@ router.post("/products/:productid/review", isLoggedin, async function (req, res)
             return res.status(400).send("Rating must be between 1 and 5");
         }
 
-        const product = await productsModel.findById(req.params.productid);
+        console.log("Product ID:", req.params.productid);
+
+        const product = await productsModel.findOne(req.params.productid);
         if (!product) {
             return res.status(404).send("Product not found");
         }
 
         product.reviews.push({ name, comments, rating });
-        await product.save();
+        console.log("Updated reviews:", product.reviews);
 
+        await product.save();
         res.send({ status: "ok", message: "Review added successfully" });
     } catch (error) {
-        console.error(error);
-        console.log(error.message);
+        console.error("Error during product save:", error.message);
         res.status(500).send("Error adding review");
     }
 });

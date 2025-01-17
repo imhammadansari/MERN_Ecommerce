@@ -1,6 +1,4 @@
-"use client";
 import React, { useEffect, useState } from "react";
-import { FaShoppingCart } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import MobileNavbar from "./MobileNavbar";
@@ -101,13 +99,13 @@ const Header = () => {
           <div className="flex justify-end items-center ">
             <ul className="flex items-center gap-6 text-black text-base">
               <li>
-                <Link to="/">Profile</Link>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/returnpolicy">Messages</Link>
+                <Link to="/returnpolicy">Return Policy</Link>
               </li>
               <li>
-                <Link to="/returnpolicy">Orders</Link>
+                <Link to="/orderdetails">Orders</Link>
               </li>
               {isLoggedIn ? (
                 <li onClick={handleLogout} className="cursor-pointer">

@@ -159,6 +159,8 @@ const ProductDetails = () => {
                                 <p className="text-sm md:text-base text-gray-500 font-light">Brand: {product.brand}</p>
                             )}
 
+                            <p className="text-sm md:text-lg font-bold text-start">{product.name}</p>
+                            <p className="text-lg md:text-xl text-red-600">Rs. {product.price}</p>
                             <div className='flex gap-2 items-center'>
                                 <img className='w-20' src='/rating.png' />
                                 <p>9.3</p>
@@ -169,8 +171,6 @@ const ProductDetails = () => {
                                 <p>154 Sold</p>
 
                             </div>
-                            <p className="text-sm md:text-lg font-bold text-start">{product.name}</p>
-                            <p className="text-lg md:text-xl text-red-600">Rs. {product.price}</p>
                             <div className='flex text-start py-2 border-b border-black border-opacity-25 w-full'>
                                 <p className='w-32'>Price: </p>
                                 <p>Negotiable</p>
