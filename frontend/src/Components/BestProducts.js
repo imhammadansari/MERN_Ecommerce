@@ -13,7 +13,7 @@ const BestProducts = () => {
 
   const getProducts = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/shop`);
+      const response = await axios.get(`https://mern-ecommerce-rnup.onrender.com/shop`);
       // Filter only products where bestseller is true
       const bestSellerProducts = response.data.product.filter(product => product.bestseller === true);
       setProducts(bestSellerProducts);
