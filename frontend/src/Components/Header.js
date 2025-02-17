@@ -128,7 +128,7 @@ const Header = () => {
 
       {/* Mobile Navbar */}
       {showMobileNavbar && (
-        <MobileNavbar onClose={toggleMobileNavbar} /> // Pass toggle function
+        <MobileNavbar onClose={toggleMobileNavbar} /> 
       )}
     </div>
   );

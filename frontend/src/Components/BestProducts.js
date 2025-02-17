@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { Buffer } from 'buffer';
-import Header from '../Components/Header';
-import Footer from '../Components/Footer';
 
 const BestProducts = () => {
   const [products, setProducts] = useState([]);
