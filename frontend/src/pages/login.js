@@ -13,7 +13,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8080/users/login", {
+      const response = await axios.post("https://mern-ecommerce-rnup.onrender.com/users/login", {
         email: email,
         password: password
       });

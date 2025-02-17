@@ -10,7 +10,7 @@ function AllProductsForAdmin() {
 
   const getProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/shop');
+      const response = await axios.get('https://mern-ecommerce-rnup.onrender.com/shop');
       setProducts(response.data.product);
       console.log(response.data.product);
     } catch (error) {
@@ -20,7 +20,7 @@ function AllProductsForAdmin() {
 
   const deleteProduct = async (productId) => {
     try {
-      const response = await axios.delete(`http://localhost:8080/products/deleteproduct/${productId}`);
+      const response = await axios.delete(`https://mern-ecommerce-rnup.onrender.com/products/deleteproduct/${productId}`);
       console.log(response.data.message);
       if(response.status === 200){
         alert("Product Deleted Successfully");

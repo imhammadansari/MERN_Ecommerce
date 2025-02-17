@@ -21,7 +21,7 @@ dotenv.config();
 
 
 app.use(cors({
-    origin: "http://localhost:3000", 
+    origin: "https://mern-ecommerce-rnup.onrender.com", 
     credentials: true 
 }));
 

@@ -37,7 +37,7 @@ const ProductDetails = () => {
 
     const getProduct = async () => {
         try {
-            const response = await axios.get(`http://localhost:8080/items/${productid}`);
+            const response = await axios.get(`https://mern-ecommerce-rnup.onrender.com/items/${productid}`);
             setProduct(response.data.product);
             console.log(response.data.product);
         } catch (error) {
@@ -47,7 +47,7 @@ const ProductDetails = () => {
 
     const addToCart = async (productId) => {
         try {
-            const response = await axios.post(`http://localhost:8080/addtoCart/${productId}`);
+            const response = await axios.post(`https://mern-ecommerce-rnup.onrender.com/addtoCart/${productId}`);
             console.log("Product added to cart:", response);
 
             if (response.status === 200) {
@@ -67,7 +67,7 @@ const ProductDetails = () => {
                 return;
             }
 
-            await axios.post(`http://localhost:8080/products/${productid}/review`, reviewData);
+            await axios.post(`https://mern-ecommerce-rnup.onrender.com/products/${productid}/review`, reviewData);
             alert("Review submitted successfully");
             setReviewData({ name: '', comments: '', rating: '' });
             getProduct();
@@ -78,7 +78,7 @@ const ProductDetails = () => {
 
     const bestProducts = async () => {
         try {
-            const response = await axios.get(`http://localhost:8080/shop`);
+            const response = await axios.get(`https://mern-ecommerce-rnup.onrender.com/shop`);
             const bestSellerProducts = response.data.product
                 .filter(product => product.bestseller === true)
                 .slice(0, 5);
@@ -90,7 +90,7 @@ const ProductDetails = () => {
 
     const relatedProducts = async (productCategory) => {
         try {
-            const response = await axios.get(`http://localhost:8080/shop`);
+            const response = await axios.get(`https://mern-ecommerce-rnup.onrender.com/shop`);
 
             const relateProducts = response.data.product.filter(product => product.category === productCategory)
                 .slice(0, 6);

@@ -11,7 +11,7 @@ function OrderDetails() {
 
   const getOrderItems = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/orderDetails');
+      const response = await axios.get('https://mern-ecommerce-rnup.onrender.com/orderDetails');
       
       console.log(response.data);
         setOrderItems(response.data.orders);

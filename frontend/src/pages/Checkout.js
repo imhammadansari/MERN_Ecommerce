@@ -33,7 +33,7 @@ function Checkout() {
         try {
           const productIds = cartProducts.map(item => item._id);
       
-          const response = await axios.post("http://localhost:8080/placeOrder", {
+          const response = await axios.post("https://mern-ecommerce-rnup.onrender.com/placeOrder", {
             productIds: productIds,
             quantities: quantities,  
             totalPrice: totalPrice,   

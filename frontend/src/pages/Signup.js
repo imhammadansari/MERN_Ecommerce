@@ -13,7 +13,7 @@ function Signup() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8080/users/register", {
+      const response = await axios.post("https://mern-ecommerce-rnup.onrender.com/users/register", {
         fullname: fullname,
         email: email,
         password: password

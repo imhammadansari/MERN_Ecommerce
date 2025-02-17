@@ -17,7 +17,7 @@ function AddtoCart() {
 
   const getCartProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/addtoCart");
+      const response = await axios.get("https://mern-ecommerce-rnup.onrender.com/addtoCart");
       const user = response.data.user;
 
       setcartProducts(user.cart || []);
@@ -31,7 +31,7 @@ function AddtoCart() {
 
   const getSavedProducts = async () => {
     try {
-        const response = await axios.get(`http://localhost:8080/shop`);
+        const response = await axios.get(`https://mern-ecommerce-rnup.onrender.com/shop`);
         const bestSellerProducts = response.data.product.slice(19, 25);
             setsavedProducts(bestSellerProducts);
     } catch (error) {
@@ -75,7 +75,7 @@ function AddtoCart() {
 
   const deleteProduct = async (productId) => {
     try {
-      const response = await axios.delete(`http://localhost:8080/removeFromCart/${productId}`);
+      const response = await axios.delete(`https://mern-ecommerce-rnup.onrender.com/removeFromCart/${productId}`);
       if (response.status === 200) {
         setcartProducts((prevCart) => prevCart.filter((item) => item._id !== productId));
         setQuantities((prevQuantities, index) =>
