@@ -162,10 +162,13 @@ const ProductDetails = () => {
                             <p className="text-sm md:text-lg font-bold text-start">{product.name}</p>
                             <p className="text-lg md:text-xl text-red-600">Rs. {product.price}</p>
                             <div className='flex gap-2 items-center'>
-                                <img className='w-20' src='/rating.png' />
-                                <p>9.3</p>
+                                {product.reviews.length === 0 ? (
+                                    <img className='w-20' src='/rating0.png' />
+                                ): (
+                                    <img className='w-20' src='/rating.png' />
+                                )}
                                 <img src='' />
-                                <p>32 Reviews</p>
+                                <p>{product.reviews.length} Reviews</p>
 
                                 <img src='' />
                                 <p>154 Sold</p>

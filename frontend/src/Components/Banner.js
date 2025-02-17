@@ -7,6 +7,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { Link } from 'react-router-dom';
 
 
 const Banner = () => {
@@ -18,16 +19,16 @@ const Banner = () => {
                 <div className='w-full flex bg-white'>
 
                 <div className='w-[15rem] hidden lg:block text-start px-2 py-2'>
-                    <p className='pb-1 bg-slate-200 rounded p-1'>Automobiles</p>
-                    <p className='pb-1 p-1'>Clothes and wear</p>
-                    <p className='pb-1 p-1'>Home interiors</p>
-                    <p className='pb-1 p-1'>Computer and tech</p>
-                    <p className='pb-1 p-1'>Tools, equipements</p>
-                    <p className='pb-1 p-1'>Sports and outdoor</p>
-                    <p className='pb-1 p-1'>Animal and pets</p>
-                    <p className='pb-1 p-1'>Mechinery tools</p>
-                    <p className='pb-1 p-1'>More category</p>
-                
+                    <p className='pb-1 p-1'><Link to='/products/Kitchen%20Accessories'>Kitchen Accessories</Link></p>
+                    <p className='pb-1 p-1'><Link to='/products/Men%20Fashion'>Men's Fashion</Link></p>
+                    <p className='pb-1 p-1'><Link to='/products/Men%20Jeans'>Men's Jeans</Link></p>
+                    <p className='pb-1 p-1'><Link to='/products/Men%20Shoes'>Men's Shoes</Link></p>
+                    <p className='pb-1 p-1'><Link to='/products/Men%20Watches'>Men's Watches</Link></p>
+                    <p className='pb-1 p-1'><Link to='/products/Electronics'>Electronics</Link></p>
+                    <p className='pb-1 p-1'><Link to='/products/Women%20Fashion'>Women's Fashion</Link></p>
+                    <p className='pb-1 p-1'><Link to='/products/Women%20Shoes'>Women's Shoes</Link></p>
+                    <p className='pb-1 p-1'><Link to='/products/Household%20Accessories'>Household Accessories</Link></p>
+                    <p className='pb-1 p-1'><Link to='/products/Sports%20&%20Outdoors'>Sports & Outdoors</Link></p>
 
                 </div>
 

@@ -15,6 +15,7 @@ import ProductDetails from './pages/ProductsDetails';
 import Practice from './pages/Practice';
 import EditProducts from './pages/EditProducts';
 import AllProductsForAdmin from './pages/AllProductsForAdmin';
+import AllOrders from './pages/AllOrders';
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
         <Route path='/cart' element = { <AddtoCart /> } />
         <Route path='/checkout' element = { <Checkout /> } />
         <Route path='/orderdetails' element = { <OrderDetails /> } />
+        <Route path='/allOrders' element = { <AllOrders /> } />
         <Route path='/logout' element = { <Logout /> } />
         <Route path='/practice' element = { <Practice /> } />
       </Routes>

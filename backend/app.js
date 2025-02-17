@@ -1,21 +1,23 @@
-const express = require("express");
+import express from 'express';
 const app = express();
-const cookieParser = require("cookie-parser");
-const path = require("path");
-const cors = require("cors");
-const bodyParser = require("body-parser");
+import cookieParser from "cookie-parser";
+import path from "path";
+import cors from "cors";
+import bodyParser from "body-parser";
 const router = express.Router();
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+import dotenv from "dotenv";
 
-const isLoggedin = require("./middlewares/isLoggedin");
-const ownersRouter = require("./routes/ownersRouter");
-const usersRouter = require("./routes/usersRouter");
-const productsRouter = require("./routes/productsRouter");
-const productsModel = require("./models/product-model");
-const userModel = require("./models/user-model");
-const { model } = require("mongoose");
 
-require("dotenv").config();
+import isLoggedin from "./middlewares/isLoggedin.js";
+import ownersRouter from "./routes/ownersRouter.js";
+import usersRouter from "./routes/usersRouter.js";
+import productsRouter from "./routes/productsRouter.js";
+import productsModel from "./models/product-model.js";
+import userModel from "./models/user-model.js";
+const __dirname = path.resolve();
+
+dotenv.config();
 
 
 app.use(cors({
@@ -27,9 +29,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(bodyParser.json());
-
-app.use(express.static(path.join(__dirname, "public")));
-app.set("view engine", "ejs");
 
 app.use("/owners", ownersRouter);
 app.use("/users", usersRouter);
@@ -138,7 +137,7 @@ router.post("/products/:productid/review", isLoggedin, async function (req, res)
 
         // Validate inputs
         if (!name || !comments || !rating) {
-            return res.status(400).send("All fields are required");
+            return res.status(400).send("All fields are fromd");
         }
 
         if (rating < 1 || rating > 5) {
@@ -147,13 +146,18 @@ router.post("/products/:productid/review", isLoggedin, async function (req, res)
 
         console.log("Product ID:", req.params.productid);
 
-        const product = await productsModel.findOne(req.params.productid);
+        const product = await productsModel.findOne({ _id: req.params.productid });
         if (!product) {
             return res.status(404).send("Product not found");
         }
 
         product.reviews.push({ name, comments, rating });
         console.log("Updated reviews:", product.reviews);
+
+        // Ensure bestseller is a Boolean before saving
+        if (typeof product.bestseller !== "boolean") {
+            product.bestseller = false;
+        }
 
         await product.save();
         res.send({ status: "ok", message: "Review added successfully" });
@@ -162,6 +166,7 @@ router.post("/products/:productid/review", isLoggedin, async function (req, res)
         res.status(500).send("Error adding review");
     }
 });
+
 
 
 
@@ -259,10 +264,63 @@ router.get("/orderDetails", isLoggedin, async function (req, res) {
     }
 });
 
+router.get("/allOrders", async function (req, res) {
+    try {
+        const users = await userModel.find().populate({
+            path: "orders.products.productId",
+            model: "products"
+        });
 
+        let allOrders = [];
+        users.forEach(user => {
+            if (user.orders.length > 0) {
+                allOrders.push(...user.orders);
+            }
+        });
+
+        if (allOrders.length === 0) {
+            return res.status(404).send({ status: "error", message: "No orders available" });
+        }
+
+        res.send({ status: "ok", orders: allOrders });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ status: "error", message: "Error retrieving orders" });
+    }
+});
+
+router.post("/updateOrder/:orderId", async (req, res) => {
+    try {
+        const { orderId } = req.params;
+        const { status } = req.body;
+
+        const user = await userModel.findOne({ "orders._id": orderId });
+        if (!user) {
+            return res.status(404).json({ success: false, message: "Order not found" });
+        }
+
+        user.orders.forEach(order => {
+            if (order._id.toString() === orderId) {
+                order.status = status;
+            }
+        });
+
+        await user.save();
+
+        res.json({ success: true, message: "Order status updated" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: "Error updating order status" });
+    }
+});
+
+app.use(express.static(path.join(__dirname, "/frontend/build")));
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+})
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
 
-module.exports = app;
+export default app;

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose';
 
 
 const productSchema = mongoose.Schema({
@@ -28,8 +28,8 @@ const productSchema = mongoose.Schema({
         default: 0
     },
     category: String,
-    bestseller: Boolean
+    bestseller: { type: Boolean, default: false }
 });
 
-module.exports = mongoose.model("products", productSchema);
+export default mongoose.model("products", productSchema);
 

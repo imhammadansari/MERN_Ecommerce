@@ -79,7 +79,7 @@ function Products() {
           <h1 className='font-bold text-xl'>Add Products</h1>
           <form className='mt-6 flex flex-col gap-3' onSubmit={submit}>
 
-            <input className='text-xs lg:text-base p-2 w-[10rem] lg:w-[40rem]' value={image} type='file' name='image' onChange={(e) => {
+            <input className='text-xs lg:text-base p-2 w-[10rem] lg:w-[40rem]' type='file' name='image' onChange={(e) => {
               setimage(e.target.files[0]);
             }} />
 

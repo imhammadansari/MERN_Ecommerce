@@ -218,7 +218,7 @@ const CategoryProducts = () => {
         <div className='flex flex-col'>
 
         <h1 className="text-start font-bold bg-white w-full p-2 mx-1 rounded-sm border border-black border-opacity-15">{category}</h1>
-        <div className="flex flex-wrap items-center justify-center py-4 gap-4">
+        <div className="flex flex-wrap items-center justify-center pl-3 py-4 gap-4">
           {products?.map((item) => {
             const base64Image = Buffer.from(item.image).toString('base64');
             return (
@@ -233,8 +233,12 @@ const CategoryProducts = () => {
                 <Link to={`/items/${item._id}`}>
                   <p className="flex text-start text-lg font-bold">Rs. {item.price}</p>
                   <div className='flex gap-2 items-center'>
-                    <img className='w-16' src='/rating.png' />
-                    <p>7.5</p>
+                  {item.reviews.length === 0 ? (
+                                    <img className='w-20' src='/rating0.png' />
+                                ): (
+                                    <img className='w-20' src='/rating.png' />
+                                )}
+                    <p>{item.reviews.length}</p>
                   </div>
                   <p className="mt-1 w-64 text-sm text-start">{item.name}</p>
 

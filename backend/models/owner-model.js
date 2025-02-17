@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-
+import mongoose from 'mongoose';
 
 const ownerSchema = mongoose.Schema({
     fullname: String,
@@ -11,4 +10,4 @@ const ownerSchema = mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model("owner", ownerSchema);
+export default mongoose.model("owner", ownerSchema);

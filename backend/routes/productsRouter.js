@@ -1,7 +1,7 @@
-const express = require('express')
+import express from 'express';
 const router = express.Router();
-const upload = require("../config/multer-confiq");
-const productsModel = require("../models/product-model");
+import upload from "../config/multer-confiq.js";
+import productsModel from "../models/product-model.js";
 
 
 router.get("/", function (req, res) {
@@ -64,10 +64,9 @@ router.post("/editproduct/:id", upload.single("image"), async function (req, res
   
       let image = req.file ? `/uploads/${req.file.filename}` : null;
   
-      // If no new image is uploaded, keep the old image
       if (!image) {
         const product = await productsModel.findById(id);
-        image = product.image; // Use the existing image
+        image = product.image;
       }
   
       const updatedProduct = await productsModel.findOneAndUpdate(
@@ -104,8 +103,6 @@ router.post("/editproduct/:id", upload.single("image"), async function (req, res
   });
   
   
-
-
 router.delete("/deleteproduct/:id", async function (req, res) {
   try {
       const { id } = req.params;
@@ -144,4 +141,4 @@ router.get("/category/:category", async (req, res) => {
   });
   
 
-module.exports = router;
+export default router;
