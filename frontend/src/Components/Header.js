@@ -11,7 +11,7 @@ const Header = () => {
   useEffect(() => {
     const checkAuthStatus = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/users/check-login");
+        const response = await axios.get("https://mern-ecommerce-rnup.onrender.com/users/check-login");
         setIsLoggedIn(response.data.isLoggedIn);
       } catch (error) {
         setIsLoggedIn(false);
@@ -22,7 +22,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.get("http://localhost:8080/users/logout");
+      await axios.get("https://mern-ecommerce-rnup.onrender.com/users/logout");
       setIsLoggedIn(false);
       navigate("/login");
     } catch (error) {
