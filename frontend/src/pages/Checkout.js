@@ -1,250 +1,181 @@
-import React, { useState } from 'react';
+import axios from 'axios'
+import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 
 function Checkout() {
-  const stripe = useStripe();
-  const elements = useElements();
-  const navigate = useNavigate();
-  const location = useLocation();
-  
-  // Get cart data from location state
-  const { cartProducts = [], quantities = [], totalPrice = 0 } = location.state || {};
-  
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-  });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+    const location = useLocation();
+    const { cartProducts, quantities, totalPrice } = location.state;
+    const navigate = useNavigate();
+    const totalQuantity = quantities.reduce((total, quantity) => total + quantity, 0);
 
-  const totalQuantity = quantities.reduce((total, qty) => total + qty, 0);
+    const [firstName, setfirstName] = useState("");
+    const [lastName, setlastName] = useState("");
+    const [email, setemail] = useState("");
+    const [phoneNumber, setphoneNumber] = useState("");
+    const [cardNumber, setcardNumber] = useState("");
+    const [securityCode, setsecurityCode] = useState("");
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
+    axios.defaults.withCredentials = true;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError(null);
-
-    // Basic validation
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone) {
-      setError('Please fill in all required fields');
-      return;
-    }
-
-    if (!stripe || !elements) {
-      setError('Stripe has not loaded yet. Please try again.');
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      // 1. Create payment intent on server
-      const { data: { clientSecret } } = await axios.post(
-        'https://mern-ecommerce-rnup.onrender.com/create-payment-intent',
-        { amount: Math.round(totalPrice * 100) } // Convert to cents
-      );
-
-      // 2. Confirm card payment with Stripe
-      const { error: stripeError, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: elements.getElement(CardElement),
-          billing_details: {
-            name: `${formData.firstName} ${formData.lastName}`,
-            email: formData.email,
-            phone: formData.phone,
-          },
-        }
-      });
-
-      if (stripeError) {
-        throw new Error(stripeError.message);
-      }
-
-      if (paymentIntent.status === 'succeeded') {
-        // 3. Create order on your backend
-        const productIds = cartProducts.map(item => item._id);
+    const orderItems = async () => {
+        alert("We are not currently accepting any orders. Please check back later.");
+        return;
         
-        const orderResponse = await axios.post(
-          'https://mern-ecommerce-rnup.onrender.com/placeOrder',
-          {
-            productIds,
-            quantities,
-            totalPrice,
-            ...formData,
-            paymentIntentId: paymentIntent.id
-          }
-        );
-
-        if (orderResponse.data.status === 'ok') {
-          navigate('/orderdetails', { state: { orderId: orderResponse.data.orderId } });
-        } else {
-          throw new Error('Failed to create order');
+        // Original order placement logic (disabled)
+        if (!firstName || !lastName || !email || !phoneNumber || !cardNumber || !securityCode) {
+            alert("Please fill out all billing details.");
+            return;
         }
-      }
-    } catch (err) {
-      console.error('Payment error:', err);
-      setError(err.message || 'Payment failed. Please try again.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const cardElementOptions = {
-    style: {
-      base: {
-        fontSize: '16px',
-        color: '#424770',
-        '::placeholder': {
-          color: '#aab7c4',
-        },
-      },
-      invalid: {
-        color: '#9e2146',
-      },
-    },
-    hidePostalCode: true,
-  };
-
-  return (
-    <>
-      <Header />
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-2xl font-bold mb-8">Checkout</h1>
+        try {
+            const productIds = cartProducts.map(item => item._id);
         
-        <div className="flex flex-col md:flex-row gap-8">
-          {/* Billing Form */}
-          <div className="md:w-2/3">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h2 className="text-xl font-semibold mb-4">Billing Information</h2>
-              
-              <form onSubmit={handleSubmit}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                  <div>
-                    <label className="block text-sm font-medium mb-1">First Name*</label>
-                    <input
-                      type="text"
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleChange}
-                      className="w-full p-2 border rounded"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-1">Last Name*</label>
-                    <input
-                      type="text"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleChange}
-                      className="w-full p-2 border rounded"
-                      required
-                    />
-                  </div>
+            const response = await axios.post("https://mern-ecommerce-rnup.onrender.com/placeOrder", {
+                productIds: productIds,
+                quantities: quantities,  
+                totalPrice: totalPrice,   
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                phoneNumber: phoneNumber,
+                cardNumber: cardNumber,
+                securityCode: securityCode
+            });
+        
+            if (response.data.status === "ok") {
+                alert("Order placed successfully!");
+                navigate("/orderdetails");
+            } else {
+                alert("Failed to place order");
+            }
+        } catch (error) {
+            console.error(error);
+            alert("Error placing order");
+        }
+    };
+
+    return (
+        <>
+            <Header />
+            <div className="w-full">
+                <div className="px-4 md:px-8 lg:px-12 py-4 flex flex-col md:flex-row">
+                    <form className="w-full flex flex-col md:flex-row">
+                        <div className="w-full lg:w-[50rem] ">
+                            <h1 className="font-bold text-center text-xl">Billing Details</h1>
+                            <div className="py-4 flex flex-col gap-2 items-center">
+                                <div className="flex gap-2 ">
+                                    <input
+                                        className="bg-white border border-1 border-solid border-black border-opacity-30 p-1 text-sm md:text-base w-[11rem] sm:w-[15rem] md:w-[13.5rem] lg:w-[21rem]"
+                                        required
+                                        type="text"
+                                        placeholder="First Name"
+                                        name="firstName"
+                                        onChange={(e) => {setfirstName(e.target.value)}}
+                                    />
+                                    <input
+                                        className="bg-white border border-1 border-solid border-black border-opacity-30 p-1 text-sm md:text-base w-[11rem] sm:w-[15rem] md:w-[13.5rem] lg:w-[21rem]"
+                                        required
+                                        type="text"
+                                        placeholder="Last Name"
+                                        name="lastName"
+                                        onChange={(e) => {setlastName(e.target.value)}}
+                                    />
+                                </div>
+                                <div className="flex gap-2">
+                                    <input
+                                        className="bg-white border border-1 border-solid border-black border-opacity-30 p-1 text-sm md:text-base w-[11rem] sm:w-[15rem] md:w-[13.5rem] lg:w-[21rem]"
+                                        required
+                                        type="text"
+                                        placeholder="Email Address"
+                                        name="email"
+                                        onChange={(e) => {setemail(e.target.value)}}
+                                    />
+                                    <input
+                                        className="bg-white border border-1 border-solid border-black border-opacity-30 p-1 text-sm md:text-base w-[11rem] sm:w-[15rem] md:w-[13.5rem] lg:w-[21rem]"
+                                        required
+                                        type="number"
+                                        placeholder="Phone Number"
+                                        name="phoneNumber"
+                                        onChange={(e) => {setphoneNumber(e.target.value)}}
+                                    />
+                                </div>
+
+                                <input
+                                    className="bg-white border border-1 border-solid border-black border-opacity-30 p-1 text-sm md:text-base w-[22.35rem] sm:w-[30.5rem] md:w-[27.5rem] lg:w-[42.5rem] mt-4 disabled:opacity-50"
+                                    required
+                                    type="number"
+                                    placeholder="Card Number"
+                                    name="cardNumber"
+                                    onChange={(e) => {setcardNumber(e.target.value)}}
+                                    disabled
+                                />
+
+                                <div className="flex gap-2">
+                                    <input
+                                        className="bg-white border border-1 border-solid border-black border-opacity-30 p-1 text-sm md:text-base w-[11rem] sm:w-[15rem] md:w-[13.5rem] lg:w-[21rem] disabled:opacity-50"
+                                        required
+                                        type="text"
+                                        placeholder="Expiration (MM/YYYY)"
+                                        name="expiration"
+                                        disabled
+                                    />
+                                    <input
+                                        className="bg-white border border-1 border-solid border-black border-opacity-30 p-1 text-sm md:text-base w-[11rem] sm:w-[15rem] md:w-[13.5rem] lg:w-[21rem] disabled:opacity-50"
+                                        required
+                                        type="number"
+                                        placeholder="Security Code"
+                                        name="securityCode"
+                                        onChange={(e) => {setsecurityCode(e.target.value)}}
+                                        disabled
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="w-full sm:w-[30rem] md:2/6 lg:w-[30rem] flex flex-col md:border-l border-black mx-auto">
+                            <h1 className="font-bold text-xl mt-4 md:mt-0 px-4 md:px-8">Total Payment</h1>
+
+                            <div className="flex flex-col px-12 md:px-8 py-8 gap-2">
+                                <div className="flex justify-between">
+                                    <h1>Sub Total</h1>
+                                    <p>Rs. {totalPrice}</p>
+                                </div>
+
+                                <div className="flex justify-between">
+                                    <h1>Total Products</h1>
+                                    <p>{cartProducts.length}</p>
+                                </div>
+
+                                <div className="flex justify-between">
+                                    <h1>Total Quantity</h1>
+                                    <p>{totalQuantity}</p>
+                                </div>
+                            </div>
+
+                            <div className="flex flex-col items-center px-4 md:px-8 py-10">
+                                <button
+                                    onClick={(e) => {
+                                        e.preventDefault(); 
+                                        orderItems();
+                                    }}
+                                    type="submit"
+                                    className="w-full h-9 bg-gray-400 text-white cursor-not-allowed"
+                                    disabled
+                                >
+                                    Place Order
+                                </button>
+                                <p className="text-red-500 font-bold mt-4 text-center">
+                                    We are not currently accepting any orders. Please check back later.
+                                </p>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                  <div>
-                    <label className="block text-sm font-medium mb-1">Email*</label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="w-full p-2 border rounded"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-1">Phone*</label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full p-2 border rounded"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div className="mb-6">
-                  <label className="block text-sm font-medium mb-1">Payment Details*</label>
-                  <div className="p-3 border rounded">
-                    <CardElement options={cardElementOptions} />
-                  </div>
-                </div>
-
-                {error && (
-                  <div className="mb-4 p-2 bg-red-100 text-red-700 rounded">
-                    {error}
-                  </div>
-                )}
-
-                <button
-                  type="submit"
-                  disabled={!stripe || loading}
-                  className={`w-full py-2 px-4 bg-blue-600 text-white rounded hover:bg-blue-700 ${
-                    !stripe || loading ? 'opacity-50 cursor-not-allowed' : ''
-                  }`}
-                >
-                  {loading ? 'Processing Payment...' : `Pay $${totalPrice.toFixed(2)}`}
-                </button>
-              </form>
             </div>
-          </div>
-
-          {/* Order Summary */}
-          <div className="md:w-1/3">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
-              
-              <div className="mb-6">
-                {cartProducts.map((product, index) => (
-                  <div key={product._id} className="flex justify-between py-2 border-b">
-                    <div>
-                      <p>{product.name}</p>
-                      <p className="text-sm text-gray-500">Qty: {quantities[index]}</p>
-                    </div>
-                    <p>${(product.price * quantities[index]).toFixed(2)}</p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="space-y-2">
-                <div className="flex justify-between">
-                  <span>Subtotal</span>
-                  <span>${totalPrice.toFixed(2)}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Shipping</span>
-                  <span>Free</span>
-                </div>
-                <div className="flex justify-between font-bold text-lg pt-2">
-                  <span>Total</span>
-                  <span>${totalPrice.toFixed(2)}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <Footer />
-    </>
-  );
+            <Footer />
+        </>
+    )
 }
 
-export default Checkout;
+export default Checkout
