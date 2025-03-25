@@ -8,6 +8,7 @@ const router = express.Router();
 import mongoose from 'mongoose';
 import dotenv from "dotenv";
 import Stripe from 'stripe';
+import axios from "axios";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 
@@ -51,6 +52,22 @@ const connectDb = async () => {
 }
 
 connectDb();
+
+const url = `https://mern-ecommerce-rnup.onrender.com`;
+const interval = 30000;
+
+function reloadWebsite() {
+  axios
+    .get(url)
+    .then((response) => {
+      console.log("website reloded");
+    })
+    .catch((error) => {
+      console.error(`Error : ${error.message}`);
+    });
+}
+
+setInterval(reloadWebsite, interval);
 
 router.get("/shop", async function (req, res) {
     try {
@@ -172,7 +189,7 @@ router.post("/products/:productid/review", isLoggedin, async function (req, res)
 
 router.post("/checkOut", isLoggedin, async function (req, res) {
     try {
-        const { firstName, lastName, email, phoneNumber, streetAddress, city, zipcode, cardNumber, securityCode } = req.body;
+        const { firstName, lastName, email, phoneNumber, cardNumber, securityCode } = req.body;
         const user = await userModel.findOne({ email: req.user.email});
 
         if(!user) {
@@ -185,9 +202,6 @@ router.post("/checkOut", isLoggedin, async function (req, res) {
             lastName,
             email,
             phoneNumber,
-            streetAddress,
-            city,
-            zipcode,
             cardNumber,
             securityCode
         })
@@ -206,7 +220,7 @@ router.post("/create-payment-intent", isLoggedin, async (req, res) => {
       const { amount } = req.body;
       
       const paymentIntent = await stripe.paymentIntents.create({
-        amount: Math.round(amount * 100), // Stripe uses cents
+        amount: Math.round(amount), // Stripe uses cents
         currency: "usd",
         automatic_payment_methods: {
           enabled: true,
@@ -225,7 +239,7 @@ router.post("/create-payment-intent", isLoggedin, async (req, res) => {
 router.post("/placeOrder", isLoggedin, async function (req, res) {
     try {
         const { productIds, quantities, totalPrice, firstName, lastName, email, 
-            phoneNumber, streetAddress, city, zipcode, cardNumber, securityCode } = req.body;
+            phoneNumber, cardNumber, securityCode } = req.body;
 
         const user = await userModel.findOne({ email: req.user.email });
         if (!user) {
@@ -244,9 +258,6 @@ router.post("/placeOrder", isLoggedin, async function (req, res) {
             lastName,
             email,
             phoneNumber,
-            streetAddress,
-            city,
-            zipcode,
             cardNumber,
             securityCode
         });
