@@ -7,6 +7,8 @@ import bodyParser from "body-parser";
 const router = express.Router();
 import mongoose from 'mongoose';
 import dotenv from "dotenv";
+import Stripe from 'stripe';
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 
 import isLoggedin from "./middlewares/isLoggedin.js";
@@ -168,8 +170,6 @@ router.post("/products/:productid/review", isLoggedin, async function (req, res)
 });
 
 
-
-
 router.post("/checkOut", isLoggedin, async function (req, res) {
     try {
         const { firstName, lastName, email, phoneNumber, streetAddress, city, zipcode, cardNumber, securityCode } = req.body;
@@ -200,6 +200,27 @@ router.post("/checkOut", isLoggedin, async function (req, res) {
         res.status(500).send("Error storing Customer Data");
     }
 })
+
+router.post("/create-payment-intent", isLoggedin, async (req, res) => {
+    try {
+      const { amount } = req.body;
+      
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: Math.round(amount * 100), // Stripe uses cents
+        currency: "usd",
+        automatic_payment_methods: {
+          enabled: true,
+        },
+      });
+  
+      res.send({
+        clientSecret: paymentIntent.client_secret,
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ error: error.message });
+    }
+  });
 
 router.post("/placeOrder", isLoggedin, async function (req, res) {
     try {
