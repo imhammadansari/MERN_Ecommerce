@@ -50,6 +50,22 @@ const connectDb = async () => {
 
 connectDb();
 
+const url = `https://mern-ecommerce-rnup.onrender.com`;
+const interval = 30000;
+
+function reloadWebsite() {
+  axios
+    .get(url)
+    .then((response) => {
+      console.log("website reloded");
+    })
+    .catch((error) => {
+      console.error(`Error : ${error.message}`);
+    });
+}
+
+setInterval(reloadWebsite, interval);
+
 router.get("/shop", async function (req, res) {
     try {
         
