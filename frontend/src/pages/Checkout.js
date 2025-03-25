@@ -1,281 +1,203 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import axios from 'axios'
+import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
-import { loadStripe } from '@stripe/stripe-js';
-import {
-  CardElement,
-  Elements,
-  useStripe,
-  useElements,
-} from '@stripe/react-stripe-js';
-
-// Create Stripe promise
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
-
-const CheckoutForm = ({ 
-  cartProducts, 
-  quantities, 
-  totalPrice,
-  totalQuantity,
-  billingDetails,
-  onOrderSuccess
-}) => {
-  const stripe = useStripe();
-  const elements = useElements();
-  const [error, setError] = useState(null);
-  const [processing, setProcessing] = useState(false);
-  const [disabled, setDisabled] = useState(true);
-  const [succeeded, setSucceeded] = useState(false);
-
-  const handleChange = async (event) => {
-    // Listen for changes in the CardElement
-    // and display any errors as the customer types their card details
-    setDisabled(event.empty);
-    setError(event.error ? event.error.message : "");
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    
-    if (!stripe || !elements) {
-      return;
-    }
-
-    setProcessing(true);
-
-    try {
-      // Create payment intent on your server
-      const { data: { clientSecret } } = await axios.post(
-        "https://mern-ecommerce-rnup.onrender.com/create-payment-intent",
-        { amount: totalPrice * 100 } // Convert to cents
-      );
-
-      // Confirm the payment with Stripe
-      const { error: stripeError, paymentIntent } = await stripe.confirmCardPayment(
-        clientSecret,
-        {
-          payment_method: {
-            card: elements.getElement(CardElement),
-            billing_details: {
-              name: `${billingDetails.firstName} ${billingDetails.lastName}`,
-              email: billingDetails.email,
-              phone: billingDetails.phoneNumber,
-            }
-          }
-        }
-      );
-
-      if (stripeError) {
-        setError(`Payment failed: ${stripeError.message}`);
-        setProcessing(false);
-        return;
-      }
-
-      if (paymentIntent.status === 'succeeded') {
-        setSucceeded(true);
-        setError(null);
-        // Payment succeeded - place the order
-        await onOrderSuccess();
-      }
-    } catch (err) {
-      setError(`Payment failed: ${err.message}`);
-      setProcessing(false);
-    }
-  };
-
-  const CARD_OPTIONS = {
-    style: {
-      base: {
-        fontSize: '16px',
-        color: '#424770',
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-        '::placeholder': {
-          color: '#aab7c4',
-        },
-      },
-      invalid: {
-        color: '#9e2146',
-        iconColor: '#9e2146',
-      },
-    },
-    hidePostalCode: true,
-  };
-
-  return (
-    <form onSubmit={handleSubmit} className="w-full">
-      <div className="mb-4">
-        <CardElement 
-          options={CARD_OPTIONS}
-          onChange={handleChange}
-        />
-      </div>
-      
-      {error && (
-        <div className="text-red-500 mb-4 text-center">
-          {error}
-        </div>
-      )}
-      
-      <button
-        type="submit"
-        disabled={processing || disabled || succeeded}
-        className={`w-full h-12 ${processing || succeeded ? 'bg-gray-400' : 'bg-black hover:bg-white hover:text-black'} text-white font-bold py-2 px-4 rounded transition duration-300`}
-      >
-        {processing ? 'Processing...' : succeeded ? 'Payment Successful!' : `Pay $${totalPrice}`}
-      </button>
-    </form>
-  );
-};
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
 function Checkout() {
-  const location = useLocation();
-  const { cartProducts, quantities, totalPrice } = location.state || {};
-  const navigate = useNavigate();
-  const totalQuantity = quantities?.reduce((total, quantity) => total + quantity, 0) || 0;
+    const location = useLocation();
+    const { cartProducts, quantities, totalPrice } = location.state;
+    const navigate = useNavigate();
+    const stripe = useStripe();
+    const elements = useElements();
 
-  const [billingDetails, setBillingDetails] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phoneNumber: "",
-  });
+    const totalQuantity = quantities.reduce((total, quantity) => total + quantity, 0);
 
-  // Redirect if no cart data
-  useEffect(() => {
-    if (!location.state) {
-      navigate('/cart');
-    }
-  }, [location.state, navigate]);
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [paymentError, setPaymentError] = useState(null);
 
-  axios.defaults.withCredentials = true;
+    axios.defaults.withCredentials = true;
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setBillingDetails(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        if (!firstName || !lastName || !email || !phoneNumber) {
+            alert("Please fill out all required details.");
+            return;
+        }
 
-  const placeOrder = async () => {
-    try {
-      const productIds = cartProducts.map(item => item._id);
-      
-      const response = await axios.post("https://mern-ecommerce-rnup.onrender.com/placeOrder", {
-        productIds: productIds,
-        quantities: quantities,
-        totalPrice: totalPrice,
-        ...billingDetails
-      });
-      
-      if (response.data.status === "ok") {
-        navigate("/orderdetails", { state: { orderSuccess: true } });
-      } else {
-        alert("Failed to place order");
-      }
-    } catch (error) {
-      console.error(error);
-      alert("Error placing order");
-    }
-  };
+        if (!stripe || !elements) {
+            return;
+        }
 
-  if (!location.state) {
-    return null; // or a loading spinner
-  }
+        setLoading(true);
 
-  return (
-    <>
-      <Header />
-      <div className="w-full min-h-screen">
-        <div className="px-4 md:px-8 lg:px-12 py-4 flex flex-col md:flex-row">
-          <div className="w-full lg:w-[50rem]">
-            <h1 className="font-bold text-center text-xl">Billing Details</h1>
-            <div className="py-4 flex flex-col gap-2 items-center">
-              <div className="flex gap-2">
-                <input
-                  className="bg-white border border-1 border-solid border-black border-opacity-30 p-2 text-sm md:text-base w-[11rem] sm:w-[15rem] md:w-[13.5rem] lg:w-[21rem] rounded"
-                  required
-                  type="text"
-                  placeholder="First Name"
-                  name="firstName"
-                  value={billingDetails.firstName}
-                  onChange={handleInputChange}
-                />
-                <input
-                  className="bg-white border border-1 border-solid border-black border-opacity-30 p-2 text-sm md:text-base w-[11rem] sm:w-[15rem] md:w-[13.5rem] lg:w-[21rem] rounded"
-                  required
-                  type="text"
-                  placeholder="Last Name"
-                  name="lastName"
-                  value={billingDetails.lastName}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="flex gap-2">
-                <input
-                  className="bg-white border border-1 border-solid border-black border-opacity-30 p-2 text-sm md:text-base w-[11rem] sm:w-[15rem] md:w-[13.5rem] lg:w-[21rem] rounded"
-                  required
-                  type="email"
-                  placeholder="Email Address"
-                  name="email"
-                  value={billingDetails.email}
-                  onChange={handleInputChange}
-                />
-                <input
-                  className="bg-white border border-1 border-solid border-black border-opacity-30 p-2 text-sm md:text-base w-[11rem] sm:w-[15rem] md:w-[13.5rem] lg:w-[21rem] rounded"
-                  required
-                  type="tel"
-                  placeholder="Phone Number"
-                  name="phoneNumber"
-                  value={billingDetails.phoneNumber}
-                  onChange={handleInputChange}
-                />
-              </div>
-              
+        try {
+            // 1. Create payment intent on the server
+            const { data: { clientSecret } } = await axios.post("https://mern-ecommerce-rnup.onrender.com/create-payment-intent", {
+                amount: totalPrice * 100, // Convert to cents
+            });
+
+            // 2. Confirm the payment with Stripe
+            const { error: stripeError, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+                payment_method: {
+                    card: elements.getElement(CardElement),
+                    billing_details: {
+                        name: `${firstName} ${lastName}`,
+                        email: email,
+                        phone: phoneNumber,
+                    },
+                }
+            });
+
+            if (stripeError) {
+                setPaymentError(stripeError.message);
+                setLoading(false);
+                return;
+            }
+
+            if (paymentIntent.status === 'succeeded') {
+                // 3. Place the order on your server
+                const productIds = cartProducts.map(item => item._id);
+                
+                const response = await axios.post("https://mern-ecommerce-rnup.onrender.com/placeOrder", {
+                    productIds: productIds,
+                    quantities: quantities,
+                    totalPrice: totalPrice,
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    phoneNumber: phoneNumber,
+                    paymentIntentId: paymentIntent.id
+                });
+
+                if (response.data.status === "ok") {
+                    alert("Order placed successfully!");
+                    navigate("/orderdetails");
+                } else {
+                    alert("Failed to place order");
+                }
+            }
+        } catch (error) {
+            console.error(error);
+            alert("Error processing payment");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const cardElementOptions = {
+        style: {
+            base: {
+                fontSize: '16px',
+                color: '#424770',
+                '::placeholder': {
+                    color: '#aab7c4',
+                },
+            },
+            invalid: {
+                color: '#9e2146',
+            },
+        },
+    };
+
+    return (
+        <>
+            <Header />
+            <div className="w-full">
+                <div className="px-4 md:px-8 lg:px-12 py-4 flex flex-col md:flex-row">
+                    <form onSubmit={handleSubmit} className="w-full flex flex-col md:flex-row">
+                        <div className="w-full lg:w-[50rem]">
+                            <h1 className="font-bold text-center text-xl">Billing Details</h1>
+                            <div className="py-4 flex flex-col gap-2 items-center">
+                                <div className="flex gap-2">
+                                    <input
+                                        className="bg-white border border-1 border-solid border-black border-opacity-30 p-1 text-sm md:text-base w-[11rem] sm:w-[15rem] md:w-[13.5rem] lg:w-[21rem]"
+                                        required
+                                        type="text"
+                                        placeholder="First Name"
+                                        value={firstName}
+                                        onChange={(e) => setFirstName(e.target.value)}
+                                    />
+                                    <input
+                                        className="bg-white border border-1 border-solid border-black border-opacity-30 p-1 text-sm md:text-base w-[11rem] sm:w-[15rem] md:w-[13.5rem] lg:w-[21rem]"
+                                        required
+                                        type="text"
+                                        placeholder="Last Name"
+                                        value={lastName}
+                                        onChange={(e) => setLastName(e.target.value)}
+                                    />
+                                </div>
+                                <div className="flex gap-2">
+                                    <input
+                                        className="bg-white border border-1 border-solid border-black border-opacity-30 p-1 text-sm md:text-base w-[11rem] sm:w-[15rem] md:w-[13.5rem] lg:w-[21rem]"
+                                        required
+                                        type="email"
+                                        placeholder="Email Address"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                    />
+                                    <input
+                                        className="bg-white border border-1 border-solid border-black border-opacity-30 p-1 text-sm md:text-base w-[11rem] sm:w-[15rem] md:w-[13.5rem] lg:w-[21rem]"
+                                        required
+                                        type="tel"
+                                        placeholder="Phone Number"
+                                        value={phoneNumber}
+                                        onChange={(e) => setPhoneNumber(e.target.value)}
+                                    />
+                                </div>
+                                
+                                <div className="w-[22.35rem] sm:w-[30.5rem] md:w-[27.5rem] lg:w-[42.5rem] mt-4 p-2 border border-1 border-solid border-black border-opacity-30">
+                                    <CardElement options={cardElementOptions} />
+                                </div>
+                                
+                                {paymentError && (
+                                    <div className="text-red-500 text-sm mt-2">{paymentError}</div>
+                                )}
+                            </div>
+                        </div>
+
+                        <div className="w-full sm:w-[30rem] md:2/6 lg:w-[30rem] flex flex-col md:border-l border-black mx-auto">
+                            <h1 className="font-bold text-xl mt-4 md:mt-0 px-4 md:px-8">Total Payment</h1>
+
+                            <div className="flex flex-col px-12 md:px-8 py-8 gap-2">
+                                <div className="flex justify-between">
+                                    <h1>Sub Total</h1>
+                                    <p>Rs. {totalPrice}</p>
+                                </div>
+
+                                <div className="flex justify-between">
+                                    <h1>Total Products</h1>
+                                    <p>{cartProducts.length}</p>
+                                </div>
+
+                                <div className="flex justify-between">
+                                    <h1>Total Quantity</h1>
+                                    <p>{totalQuantity}</p>
+                                </div>
+                            </div>
+
+                            <div className="flex items-center px-4 md:px-8 py-10">
+                                <button
+                                    type="submit"
+                                    disabled={!stripe || loading}
+                                    className={`w-full h-9 bg-black text-white hover:bg-white hover:text-black ${(!stripe || loading) ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                >
+                                    {loading ? 'Processing...' : 'Place Order'}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-          </div>
-
-          <div className="w-full sm:w-[30rem] md:2/6 lg:w-[30rem] flex flex-col md:border-l border-black mx-auto">
-            <h1 className="font-bold text-xl mt-4 md:mt-0 px-4 md:px-8">Total Payment</h1>
-
-            <div className="flex flex-col px-12 md:px-8 py-8 gap-2">
-              <div className="flex justify-between">
-                <h1>Sub Total</h1>
-                <p>${totalPrice.toFixed(2)}</p>
-              </div>
-
-              <div className="flex justify-between">
-                <h1>Total Products</h1>
-                <p>{cartProducts.length}</p>
-              </div>
-
-              <div className="flex justify-between">
-                <h1>Total Quantity</h1>
-                <p>{totalQuantity}</p>
-              </div>
-            </div>
-
-            <div className="px-4 md:px-8 py-4">
-              <h2 className="font-bold mb-4">Payment Information</h2>
-              <Elements stripe={stripePromise}>
-                <CheckoutForm 
-                  cartProducts={cartProducts}
-                  quantities={quantities}
-                  totalPrice={totalPrice}
-                  totalQuantity={totalQuantity}
-                  billingDetails={billingDetails}
-                  onOrderSuccess={placeOrder}
-                />
-              </Elements>
-            </div>
-          </div>
-        </div>
-      </div>
-      <Footer />
-    </>
-  );
+            <Footer />
+        </>
+    )
 }
 
 export default Checkout;
