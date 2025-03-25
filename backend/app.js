@@ -7,6 +7,7 @@ import bodyParser from "body-parser";
 const router = express.Router();
 import mongoose from 'mongoose';
 import dotenv from "dotenv";
+import axios from "axios";
 
 
 import isLoggedin from "./middlewares/isLoggedin.js";
