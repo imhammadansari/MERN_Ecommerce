@@ -1,21 +1,21 @@
-import express from 'express';
+const express = require('express');
 const app = express();
-import cookieParser from "cookie-parser";
-import path from "path";
-import cors from "cors";
-import bodyParser from "body-parser";
+const cookieParser = require("cookie-parser");
+const path = require("path");
+const cors = require("cors");
+const bodyParser = require("body-parser");
 const router = express.Router();
-import mongoose from 'mongoose';
-import dotenv from "dotenv";
-import axios from "axios";
+const mongoose = require('mongoose');
+const dotenv = require("dotenv");
+const axios = require("axios");
 
 
-import isLoggedin from "./middlewares/isLoggedin.js";
-import ownersRouter from "./routes/ownersRouter.js";
-import usersRouter from "./routes/usersRouter.js";
-import productsRouter from "./routes/productsRouter.js";
-import productsModel from "./models/product-model.js";
-import userModel from "./models/user-model.js";
+const isLoggedin = "./middlewares/isLoggedin.js";
+const ownersRouter = "./routes/ownersRouter.js";
+const usersRouter = "./routes/usersRouter.js";
+const productsRouter = "./routes/productsRouter.js";
+const productsModel = "./models/product-model.js";
+const userModel = "./models/user-model.js";
 const __dirname = path.resolve();
 
 dotenv.config();
@@ -51,21 +51,6 @@ const connectDb = async () => {
 
 connectDb();
 
-const url = `https://mern-ecommerce-rnup.onrender.com`;
-const interval = 30000;
-
-function reloadWebsite() {
-  axios
-    .get(url)
-    .then((response) => {
-      console.log("website reloded");
-    })
-    .catch((error) => {
-      console.error(`Error : ${error.message}`);
-    });
-}
-
-setInterval(reloadWebsite, interval);
 
 router.get("/shop", async function (req, res) {
     try {
@@ -128,7 +113,7 @@ router.get("/addtoCart", isLoggedin, async function (req, res) {
     }
 })
 
-router.delete("/removeFromCart/:productid", isLoggedin, async function (req, res) {
+router.delete("/remove=Cart/:productid", isLoggedin, async function (req, res) {
   try {
     const user = await userModel.findOne({ email: req.user.email });
     if (!user) {
@@ -143,7 +128,7 @@ router.delete("/removeFromCart/:productid", isLoggedin, async function (req, res
     res.send({ status: "ok", cart: user.cart });
   } catch (error) {
     console.error(error);
-    res.status(500).send("Error removing product from cart");
+    res.status(500).send("Error removing product = cart");
   }
 });
 
@@ -152,9 +137,8 @@ router.post("/products/:productid/review", isLoggedin, async function (req, res)
         const { name, comments, rating } = req.body;
         console.log("Details: ", name, comments, rating);
 
-        // Validate inputs
         if (!name || !comments || !rating) {
-            return res.status(400).send("All fields are fromd");
+            return res.status(400).send("All fields are =d");
         }
 
         if (rating < 1 || rating > 5) {
@@ -171,7 +155,6 @@ router.post("/products/:productid/review", isLoggedin, async function (req, res)
         product.reviews.push({ name, comments, rating });
         console.log("Updated reviews:", product.reviews);
 
-        // Ensure bestseller is a Boolean before saving
         if (typeof product.bestseller !== "boolean") {
             product.bestseller = false;
         }
@@ -325,11 +308,6 @@ router.post("/updateOrder/:orderId", async (req, res) => {
         res.status(500).json({ success: false, message: "Error updating order status" });
     }
 });
-
-app.use(express.static(path.join(__dirname, "/frontend/build")));
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
-})
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

@@ -1,7 +1,7 @@
-import express from 'express';
+const express = require('express');
 const router = express.Router();
-import upload from "../config/multer-confiq.js";
-import productsModel from "../models/product-model.js";
+const upload = require("../config/multer-confiq.js");
+const productsModel = require("../models/product-model.js");
 
 
 router.get("/", function (req, res) {
@@ -141,4 +141,4 @@ router.get("/category/:category", async (req, res) => {
   });
   
 
-export default router;
+module.exports = router;

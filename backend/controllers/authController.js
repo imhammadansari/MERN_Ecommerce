@@ -1,8 +1,8 @@
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import userModel from "../models/user-model.js";
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const userModel = require("../models/user-model.js");
 
-export const registeredUser = async function (req, res) {
+const registeredUser = async function (req, res) {
     try {
         let { fullname, email, password } = req.body;
 
@@ -34,7 +34,7 @@ export const registeredUser = async function (req, res) {
 };
 
 
-export const loginUser = async function (req, res) {
+const loginUser = async function (req, res) {
     let { email, password } = req.body;
 
     let user = await userModel.findOne({ email: email });
@@ -55,7 +55,7 @@ export const loginUser = async function (req, res) {
 };
 
 
-export const checkLogin = (req, res) => {
+const checkLogin = (req, res) => {
   const token = req.cookies.token;
   if (!token) return res.status(401).json({ isLoggedIn: false });
 
@@ -68,7 +68,7 @@ export const checkLogin = (req, res) => {
 };
 
 
-export const logout = async function (req, res) {
+const logout = async function (req, res) {
     if (req.cookies.token) {
         res.clearCookie("token");
         res.send("User Logged Out");
@@ -76,3 +76,5 @@ export const logout = async function (req, res) {
         res.send("No one is logged in");
     }
 };
+
+module.exports = {registeredUser, loginUser, checkLogin, logout};

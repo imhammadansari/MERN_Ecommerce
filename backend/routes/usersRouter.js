@@ -1,6 +1,6 @@
-import express from "express";
+const express = require("express");
 const router = express.Router();
-import { registeredUser, loginUser, checkLogin, logout } from "../controllers/authController.js";
+const { registeredUser, loginUser, checkLogin, logout } = require("../controllers/authController.js");
 
 
 router.get("/", function (req, res) {
@@ -16,4 +16,4 @@ router.get("/check-login", checkLogin);
 router.get("/logout", logout);
 
 
-export default router;
+module.exports = router;

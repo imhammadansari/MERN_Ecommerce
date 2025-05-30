@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 
 const productSchema = mongoose.Schema({
@@ -31,5 +31,5 @@ const productSchema = mongoose.Schema({
     bestseller: { type: Boolean, default: false }
 });
 
-export default mongoose.model("products", productSchema);
+module.exports = mongoose.model("products", productSchema);
 
