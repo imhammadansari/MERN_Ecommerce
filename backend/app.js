@@ -1,22 +1,19 @@
 const express = require('express');
 const app = express();
 const cookieParser = require("cookie-parser");
-const path = require("path");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const router = express.Router();
 const mongoose = require('mongoose');
 const dotenv = require("dotenv");
-const axios = require("axios");
 
 
-const isLoggedin = "./middlewares/isLoggedin.js";
-const ownersRouter = "./routes/ownersRouter.js";
-const usersRouter = "./routes/usersRouter.js";
-const productsRouter = "./routes/productsRouter.js";
-const productsModel = "./models/product-model.js";
-const userModel = "./models/user-model.js";
-const __dirname = path.resolve();
+const isLoggedin = require("./middlewares/isLoggedin.js");
+// const ownersRouter = require("./routes/ownersRouter.js");
+const usersRouter = require("./routes/usersRouter.js");
+const productsRouter = require("./routes/productsRouter.js");
+const productsModel = require("./models/product-model.js");
+const userModel = require("./models/user-model.js");
 
 dotenv.config();
 
@@ -31,7 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(bodyParser.json());
 
-app.use("/owners", ownersRouter);
+// app.use("/owners", ownersRouter);
 app.use("/users", usersRouter);
 app.use("/products", productsRouter);
 app.use("/", router);
@@ -312,5 +309,3 @@ router.post("/updateOrder/:orderId", async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
-
-export default app;
