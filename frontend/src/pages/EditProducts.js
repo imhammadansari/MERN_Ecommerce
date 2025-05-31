@@ -24,7 +24,7 @@ function EditProducts() {
 
   const fetchProductDetails = async () => {
     try {
-      const response = await axios.get(`https://mern-ecommerce-rnup.onrender.com/items/${id}`);
+      const response = await axios.get(`https://mern-ecommerce-website.up.railway.app/items/${id}`);
       const productDetails = response.data.product;
 
       if (productDetails) {
@@ -76,7 +76,7 @@ function EditProducts() {
 
     try {
       const response = await axios.post(
-        `https://mern-ecommerce-rnup.onrender.com/products/editproduct/${id}`,
+        `https://mern-ecommerce-website.up.railway.app/products/editproduct/${id}`,
         formData,
         {
           headers: { 'Content-Type': 'multipart/form-data' },

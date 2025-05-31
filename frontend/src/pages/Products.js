@@ -43,7 +43,7 @@ function Products() {
     axios.defaults.withCredentials = true;
 
     try {
-      const response = await axios.post("https://mern-ecommerce-rnup.onrender.com/products/addproducts", 
+      const response = await axios.post("https://mern-ecommerce-website.up.railway.app/products/addproducts", 
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },

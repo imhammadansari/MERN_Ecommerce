@@ -13,7 +13,7 @@ function OrderDetails() {
 
   const getOrderItems = async () => {
     try {
-      const response = await axios.get('https://mern-ecommerce-rnup.onrender.com/orderDetails');
+      const response = await axios.get('https://mern-ecommerce-website.up.railway.app/orderDetails');
       
       console.log(response.data);
       setOrderItems(response.data.orders || []);

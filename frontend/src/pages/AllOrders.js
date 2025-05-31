@@ -9,7 +9,7 @@ const AllOrders = () => {
 
     const getOrders = async () => {
         try {
-            const response = await axios.get("https://mern-ecommerce-rnup.onrender.com/allOrders");
+            const response = await axios.get("https://mern-ecommerce-website.up.railway.app/allOrders");
             setOrders(response.data.orders);
         } catch (error) {
             console.log(error.message);
@@ -22,7 +22,7 @@ const AllOrders = () => {
 
     const updateOrderStatus = async (orderId, newStatus) => {
         try {
-            const response = await axios.post(`https://mern-ecommerce-rnup.onrender.com/updateOrder/${orderId}`, { status: newStatus });
+            const response = await axios.post(`https://mern-ecommerce-website.up.railway.app/updateOrder/${orderId}`, { status: newStatus });
 
             if (response.data.success) {
                 setOrders((prevOrders) =>

@@ -13,7 +13,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("https://mern-ecommerce-rnup.onrender.com/users/login", {
+      const response = await axios.post("https://mern-ecommerce-website.up.railway.app/users/login", {
         email: email,
         password: password
       });

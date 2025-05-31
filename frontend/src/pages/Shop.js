@@ -12,7 +12,7 @@ function Shop() {
   axios.defaults.withCredentials = true;
   const addtoCart = async (productId) => {
     try {
-      const response = await axios.post(`https://mern-ecommerce-rnup.onrender.com/addtoCart/${productId}`);
+      const response = await axios.post(`https://mern-ecommerce-website.up.railway.app/addtoCart/${productId}`);
       console.log(response);
       setCartProducts(response.data); 
     } catch (error) {
@@ -22,7 +22,7 @@ function Shop() {
   
   const getProducts = async () => {
     try {
-      const response = await axios.get('https://mern-ecommerce-rnup.onrender.com/shop');
+      const response = await axios.get('https://mern-ecommerce-website.up.railway.app/shop');
       setProducts(response.data.product);
       console.log(response.data.product);
     } catch (error) {

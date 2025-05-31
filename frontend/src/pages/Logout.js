@@ -11,7 +11,7 @@ function Logout() {
       axios.defaults.withCredentials = true;
       const logout = async () => {
           try {
-              const response = await axios.get("https://mern-ecommerce-rnup.onrender.com/users/logout");
+              const response = await axios.get("https://mern-ecommerce-website.up.railway.app/users/logout");
               setuser(response.data);
               console.log(response.data);
               if(response.data === "User Logged Out"){

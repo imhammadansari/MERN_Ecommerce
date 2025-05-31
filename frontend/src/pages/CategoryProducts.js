@@ -15,7 +15,7 @@ const CategoryProducts = () => {
 
   const addtoCart = async (productId) => {
     try {
-      const response = await axios.post(`https://mern-ecommerce-rnup.onrender.com/addtoCart/${productId}`);
+      const response = await axios.post(`https://mern-ecommerce-website.up.railway.app/addtoCart/${productId}`);
       console.log("Product added to cart:", response);
       setCartProducts(response.data);
     } catch (error) {
@@ -28,7 +28,7 @@ const CategoryProducts = () => {
 
   const getProducts = async () => {
     try {
-      const response = await axios.get(`https://mern-ecommerce-rnup.onrender.com/products/category/${category}`);
+      const response = await axios.get(`https://mern-ecommerce-website.up.railway.app/products/category/${category}`);
       setProducts(response.data);
     } catch (error) {
       console.error("Error fetching products:", error.response ? error.response.data : error.message);
