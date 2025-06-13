@@ -397,7 +397,7 @@ const Categor = () => {
       <SwiperSlide>
       <div>
                     <div className='flex'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='/1.jpg' />
+                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='1.jpg' />
                     </div>
                     <p className='text-start text-sm'>Soft chairs</p>
                     <p className='text-start text-gray-400 text-xs'>From USD 19</p>
