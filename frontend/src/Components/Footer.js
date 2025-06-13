@@ -2,6 +2,8 @@ import React from 'react'
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
+import {LazyLoadImage} from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css'
 
 
 
@@ -72,8 +74,8 @@ const Footer = () => {
 <div className='hidden md:flex flex-col gap-2 items-start'>
 
     <h1 className='font-bold text-base md:text-base lg:text-base text-start pb-2'>Get app</h1>
-    <img src='Group.png' />
-    <img src='footer01.png' />
+    <LazyLoadImage loading='lazy' effect='blur' src='Group.png' />
+    <LazyLoadImage loading='lazy' effect='blur' src='footer01.png' />
 
     
 </div>

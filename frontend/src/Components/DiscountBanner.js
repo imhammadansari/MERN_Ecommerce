@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
+import {LazyLoadImage} from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css'
 
 // Import Swiper styles
 import 'swiper/css';
@@ -59,7 +61,7 @@ const DiscountBanner = () => {
             >
                 <SwiperSlide>
                <div className="flex flex-col items-center">
-      <img className="w-28 h-28 object-contain" src="watch.png" />
+      <LazyLoadImage loading='lazy' effect='blur' className="w-28 h-28 object-contain" src="watch.png" />
       <p className='text-sm'>Smart watches</p>
       <p className="bg-red-300 text-red-500 rounded-full py-1 px-1 w-16 text-center">
         -25%
@@ -68,7 +70,7 @@ const DiscountBanner = () => {
   </SwiperSlide>
   <SwiperSlide>
     <div className="flex flex-col items-center">
-      <img className="w-28 h-28 object-contain" src="laptop.png" />
+      <LazyLoadImage loading='lazy' effect='blur' className="w-28 h-28 object-contain" src="laptop.png" />
       <p className='text-sm'>Laptop</p>
       <p className="bg-red-300 text-red-500 rounded-full py-1 px-1 w-16 text-center">
         -15%
@@ -77,7 +79,7 @@ const DiscountBanner = () => {
   </SwiperSlide>
   <SwiperSlide>
     <div className="flex flex-col items-center">
-      <img className="w-28 h-28 object-contain" src="camera.png" />
+      <LazyLoadImage loading='lazy' effect='blur' className="w-28 h-28 object-contain" src="camera.png" />
       <p className='text-sm'>GoPro cameras</p>
       <p className="bg-red-300 text-red-500 rounded-full py-1 px-1 w-16 text-center">
         -40%
@@ -86,7 +88,7 @@ const DiscountBanner = () => {
   </SwiperSlide>
   <SwiperSlide>
     <div className="flex flex-col items-center">
-      <img className="w-28 h-28 object-contain" src="headphone.png" />
+      <LazyLoadImage loading='lazy' effect='blur' className="w-28 h-28 object-contain" src="headphone.png" />
       <p className='text-sm'>Headphones</p>
       <p className="bg-red-300 text-red-500 rounded-full py-1 px-1 w-16 text-center">
         -25%
@@ -95,7 +97,7 @@ const DiscountBanner = () => {
   </SwiperSlide>
   <SwiperSlide>
     <div className="flex flex-col items-center">
-      <img className="w-28 h-28 object-contain" src="mobile.png" />
+      <LazyLoadImage loading='lazy' effect='blur' className="w-28 h-28 object-contain" src="mobile.png" />
       <p className='text-sm'>Canon cameras</p>
       <p className="bg-red-300 text-red-500 rounded-full py-1 px-1 w-16 text-center">
         -25%
@@ -106,7 +108,7 @@ const DiscountBanner = () => {
           </div>
 
       <div className='px-2 hidden py-2 w-[12rem] lg:flex lg:flex-col justify-center items-center border-r border-gray-400'>
-        <img src='watch.png' />
+        <LazyLoadImage loading='lazy' effect='blur' src='watch.png' />
         <div className='flex flex-col items-center'>
         <p>Smart watches</p>
         <p className='bg-red-300 text-red-500 rounded-full py-1 px-1 w-16'>-25%</p>
@@ -114,7 +116,7 @@ const DiscountBanner = () => {
       </div>
       
       <div className='px-2 hidden py-2 w-[12rem] lg:flex lg:flex-col  justify-center items-center border-r border-gray-400'>
-        <img className='w-40' src='laptop.png' />
+        <LazyLoadImage loading='lazy' effect='blur' className='w-40' src='laptop.png' />
         <div className='flex flex-col items-center'>
         <p>Laptop</p>
         <p className='bg-red-300 text-red-500 rounded-full py-1 px-1 w-16'>-15%</p>
@@ -122,7 +124,7 @@ const DiscountBanner = () => {
       </div>
       
       <div className='px-2 hidden py-2 w-[12rem] lg:flex lg:flex-col justify-center items-center border-r border-gray-400'>
-        <img className='w-44' src='camera.png' />
+        <LazyLoadImage loading='lazy' effect='blur' className='w-44' src='camera.png' />
         <div className='flex flex-col mt-4 items-center'>
         <p>GoPro cameras</p>
         <p className='bg-red-300 text-red-500 rounded-full py-1 px-1 w-16'>-40%</p>
@@ -130,7 +132,7 @@ const DiscountBanner = () => {
       </div>
       
       <div className='px-2 hidden py-2 w-[12rem] lg:flex lg:flex-col  justify-center items-center border-r border-gray-400'>
-        <img src='headphone.png' />
+        <LazyLoadImage loading='lazy' effect='blur' src='headphone.png' />
         <div className='flex flex-col items-center'>
         <p>Headphones</p>
         <p className='bg-red-300 text-red-500 rounded-full py-1 px-1 w-16'>-25%</p>
@@ -138,7 +140,7 @@ const DiscountBanner = () => {
       </div>
       
       <div className='px-2 hidden py-2 w-[12rem] lg:flex lg:flex-col justify-center items-center'>
-        <img src='mobile.png' />
+        <LazyLoadImage loading='lazy' effect='blur' src='mobile.png' />
         <div className='flex flex-col items-center'>
         <p>Canon cameras</p>
         <p className='bg-red-300 text-red-500 rounded-full py-1 px-1 w-16'>-25%</p>

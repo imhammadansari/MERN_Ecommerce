@@ -2,6 +2,8 @@
 
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import {LazyLoadImage} from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css'
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -48,7 +50,7 @@ const Categories = () => {
                         <SwiperSlide>
                             <a href='http://localhost:3000/products/Kitchen%20Accessories'>
                                 <div className='flex flex-col items-center justify-center'>
-                                    <img className='w-[10rem] md:w-[20rem] lg:w-[25rem]' src='./kitchen.jpg' alt='Kitchen Accessories' />
+                                    <LazyLoadImage loading='lazy' effect='blur' className='w-[10rem] md:w-[20rem] lg:w-[25rem]' src='./kitchen.jpg' alt='Kitchen Accessories' />
                                     <h1 className='text-base md:text-lg lg:text-xl py-2'>Kitchen Accessories</h1>
                                 </div>
                             </a>
@@ -56,7 +58,7 @@ const Categories = () => {
                         <SwiperSlide>
                             <a href='http://localhost:3000/products/Men%20Fashion'>
                                 <div className='flex flex-col items-center justify-center'>
-                                    <img className='w-[10rem] md:w-[20rem] lg:w-[25rem]' src='./mobile.jpg' alt='Mobile Accessories' />
+                                    <LazyLoadImage loading='lazy' effect='blur' className='w-[10rem] md:w-[20rem] lg:w-[25rem]' src='./mobile.jpg' alt='Mobile Accessories' />
                                     <h1 className='py-2 text-base md:text-lg lg:text-xl'>Men's Fashion</h1>
                                 </div>
                             </a>
@@ -64,7 +66,7 @@ const Categories = () => {
                         <SwiperSlide>
                             <a href='http://localhost:3000/products/Sports%20&%20Outdoors'>
                                 <div className='flex flex-col items-center justify-center'>
-                                    <img className='w-[10rem] md:w-[20rem] lg:w-[25rem]' src='./sports.jpg' alt='Sports Accessories' />
+                                    <LazyLoadImage loading='lazy' effect='blur' className='w-[10rem] md:w-[20rem] lg:w-[25rem]' src='./sports.jpg' alt='Sports Accessories' />
                                     <h1 className='py-2 text-base md:text-lg lg:text-xl'>Sports Accessories</h1>
                                 </div>
                             </a>
@@ -72,7 +74,7 @@ const Categories = () => {
                         <SwiperSlide>
                             <a href='http://localhost:3000/products/Household%20Accessories'>
                                 <div className='flex flex-col items-center justify-center'>
-                                    <img className='w-[10rem] md:w-[20rem] lg:w-[25rem]' src='./grocery.jpg' alt='Grocery' />
+                                    <LazyLoadImage loading='lazy' effect='blur' className='w-[10rem] md:w-[20rem] lg:w-[25rem]' src='./grocery.jpg' alt='Grocery' />
                                     <h1 className='py-2 text-base md:text-lg lg:text-xl'>Household Accessories</h1>
                                 </div>
                             </a>

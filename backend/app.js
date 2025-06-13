@@ -19,7 +19,7 @@ dotenv.config();
 
 
 app.use(cors({
-    origin: "https://mern-ecommerce-rnup.onrender.com", 
+    origin: "https://mern-ecommerce-hammad-ansaris-projects.vercel.app/home", 
     credentials: true 
 }));
 

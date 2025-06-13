@@ -1,5 +1,7 @@
 "use client"
 import React from 'react';
+import {LazyLoadImage} from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css'
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -31,7 +33,7 @@ const Banner = () => {
                 </div>
 
                 <div className='py-2'>
-                    <img src='/banner.png' />
+                    <LazyLoadImage loading='lazy' effect='blur' src='/banner.png' />
                 </div>
 
 
@@ -39,7 +41,7 @@ const Banner = () => {
 
                 <div className='bg-blue-200 w-full rounded h-[10rem] px-2 py-2'>
                     <div className='flex'>
-                    <img src='Avatar.png' />
+                    <LazyLoadImage loading='lazy' effect='blur' src='Avatar.png' />
                     <div className='flex flex-col text-start pl-4'>
                     <p>Hi, user</p>
                     <p>let's get started </p>

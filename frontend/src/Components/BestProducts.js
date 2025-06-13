@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { Buffer } from 'buffer';
+import {LazyLoadImage} from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css'
 
 const BestProducts = () => {
   const [products, setProducts] = useState([]);
@@ -36,7 +38,7 @@ const BestProducts = () => {
   return (
     <div className="flex flex-col items-center bg-white w-[11rem] lg:w-[13.15rem]" key={item._id}>
       <div className="bg-white flex justify-center px-2 py-4 items-center">
-        <img
+        <LazyLoadImage loading='lazy' effect='blur'
           className="w-28 h-28 object-contain"
           src={`data:image/jpeg;base64,${base64Image}`}
           alt={item.name}

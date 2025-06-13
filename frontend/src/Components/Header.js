@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import MobileNavbar from "./MobileNavbar";
+import {LazyLoadImage} from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css'
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -44,7 +46,7 @@ const Header = () => {
       <div className="w-full border-gray-300 lg:px-20 border-b">
         <div className="flex items-center justify-between pl-4 py-4 lg:hidden">
           <div className="flex items-center gap-4">
-            <img
+            <LazyLoadImage loading='lazy' effect='blur'
               className="w-6 cursor-pointer"
               src="/category.png"
               alt="Menu"
@@ -56,9 +58,9 @@ const Header = () => {
           </div>
 
           <div className="flex px-4 items-center gap-4">
-            <img className="w-6" src="/user.png" alt="User" />
+            <LazyLoadImage loading='lazy' effect='blur' className="w-6" src="/user.png" alt="User" />
             <Link to="/cart">
-            <img className="w-6" src="/shopping-cart.png" alt="cart" />
+            <LazyLoadImage loading='lazy' effect='blur' className="w-6" src="/shopping-cart.png" alt="cart" />
             </Link>
           </div>
         </div>
@@ -118,7 +120,7 @@ const Header = () => {
               )}
               <li>
                 <Link to="/cart">
-                <img className="w-6" src="/shopping-cart.png" alt="cart" />
+                <LazyLoadImage loading='lazy' effect='blur' className="w-6" src="/shopping-cart.png" alt="cart" />
                 </Link>
               </li>
             </ul>

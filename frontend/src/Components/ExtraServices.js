@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
+import {LazyLoadImage} from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css'
 
 // Import Swiper styles
 import 'swiper/css';
@@ -26,7 +28,7 @@ const ExtraServices = () => {
           }}
         >
             <div className='bg-blue-200 absolute bottom-[-1.5rem] right flex items-center justify-center w-12 px-1 py-1 h-12 rounded-full border border-white'>
-                <img className='w-6 h-6' src='search.png' />
+                <LazyLoadImage loading='lazy' effect='blur' className='w-6 h-6' src='search.png' />
 
             </div>
           
@@ -47,7 +49,7 @@ const ExtraServices = () => {
           }}
         >
             <div className='bg-blue-200 absolute bottom-[-1.5rem] right flex items-center justify-center w-12 px-1 py-1 h-12 rounded-full border border-white'>
-                <img className='w-6 h-6' src='inventory_2.png' />
+                <LazyLoadImage loading='lazy' effect='blur' className='w-6 h-6' src='inventory_2.png' />
 
             </div>
           
@@ -68,7 +70,7 @@ const ExtraServices = () => {
           }}
         >
             <div className='bg-blue-200 absolute bottom-[-1.5rem] right flex items-center justify-center w-12 px-1 py-1 h-12 rounded-full border border-white'>
-                <img className='w-6 h-6' src='send.png' />
+                <LazyLoadImage loading='lazy' effect='blur' className='w-6 h-6' src='send.png' />
 
             </div>
           
@@ -89,7 +91,7 @@ const ExtraServices = () => {
           }}
         >
             <div className='bg-blue-200 absolute bottom-[-1.5rem] right flex items-center justify-center w-12 px-1 py-1 h-12 rounded-full border border-white'>
-                <img className='w-6 h-6' src='security.png' />
+                <LazyLoadImage loading='lazy' effect='blur' className='w-6 h-6' src='security.png' />
 
             </div>
           
@@ -127,7 +129,7 @@ const ExtraServices = () => {
           }}
         >
             <div className='bg-blue-200 absolute bottom-[-1.5rem] right flex items-center justify-center w-12 px-1 py-1 h-12 rounded-full border border-white'>
-                <img className='w-6 h-6' src='search.png' />
+                <LazyLoadImage loading='lazy' effect='blur' className='w-6 h-6' src='search.png' />
 
             </div>
           
@@ -148,7 +150,7 @@ const ExtraServices = () => {
           }}
         >
             <div className='bg-blue-200 absolute bottom-[-1.5rem] right flex items-center justify-center w-12 px-1 py-1 h-12 rounded-full border border-white'>
-                <img className='w-6 h-6' src='inventory_2.png' />
+                <LazyLoadImage loading='lazy' effect='blur' className='w-6 h-6' src='inventory_2.png' />
 
             </div>
           
@@ -168,7 +170,7 @@ const ExtraServices = () => {
           }}
         >
             <div className='bg-blue-200 absolute bottom-[-1.5rem] right flex items-center justify-center w-12 px-1 py-1 h-12 rounded-full border border-white'>
-                <img className='w-6 h-6' src='send.png' />
+                <LazyLoadImage loading='lazy' effect='blur' className='w-6 h-6' src='send.png' />
 
             </div>
           
@@ -188,7 +190,7 @@ const ExtraServices = () => {
           }}
         >
             <div className='bg-blue-200 absolute bottom-[-1.5rem] right flex items-center justify-center w-12 px-1 py-1 h-12 rounded-full border border-white'>
-                <img className='w-6 h-6' src='security.png' />
+                <LazyLoadImage loading='lazy' effect='blur' className='w-6 h-6' src='security.png' />
 
             </div>
           

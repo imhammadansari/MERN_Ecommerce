@@ -1,5 +1,7 @@
 import React from 'react'
 import Header from './Header'
+import {LazyLoadImage} from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css'
 
 
 const Return = () => {
@@ -14,7 +16,7 @@ const Return = () => {
 
         <h1 className='font-bold text-xl sm:text-2xl md:text-2xl lg:text-2xl'>Return Policy</h1>
         <div className='flex items-center justify-center my-4 w-full md:hidden'>
-        <img className='w-[8rem] md:hidden' src='return.png' />
+        <LazyLoadImage loading='lazy' effect='blur' className='w-[8rem] md:hidden' src='return.png' />
     </div>
         <p className='text-xs sm:text-sm md:text-base py-2 md:py-4'>At our Store, customer satisfaction is our top priority. If 
             you're not completely happy with your purchase, we're here to help!</p>
@@ -63,11 +65,11 @@ const Return = () => {
 
     <div className='flex md:flex-col md:justify-between md:items-center w-full md:w-2/5'>
     <div className='flex justify-center md:justify-start'>
-        <img className='hidden md:block md:w-[15rem] lg:w-[20rem]' src='return.png' />
+        <LazyLoadImage loading='lazy' effect='blur' className='hidden md:block md:w-[15rem] lg:w-[20rem]' src='return.png' />
     </div>
     
     <div className='flex w-full justify-center items-center md:mt-4'>
-        <img className='w-[8rem] md:w-[15rem] lg:w-[20rem]' src='help-desk.png' />
+        <LazyLoadImage loading='lazy' effect='blur' className='w-[8rem] md:w-[15rem] lg:w-[20rem]' src='help-desk.png' />
     </div>
 </div>
 
