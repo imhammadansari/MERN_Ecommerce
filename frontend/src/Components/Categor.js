@@ -121,7 +121,7 @@ const Categor = () => {
                     </div>
                     
                     <div className='flex justify-end items-end'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/clay-handi.jpg' />
+                    <img loading='lazy' className='w-20 flex items-end justify-end' src='clay-handi.jpg' />
                     </div>
 
                 </div>
@@ -135,7 +135,7 @@ const Categor = () => {
                     </div>
                     
                     <div className='flex justify-end items-end'>
-                    <img loading='lazy' className='w-20 flex items-end justify-end' src='/air-mattress.jpg' />
+                    <img loading='lazy' className='w-20 flex items-end justify-end' src='./air-mattress.jpg' />
                     </div>
 
                 </div>
