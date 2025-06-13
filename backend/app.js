@@ -19,7 +19,7 @@ dotenv.config();
 
 
 app.use(cors({
-    origin: "https://mern-ecommerce-peach-gamma.vercel.app/home", 
+    origin: "https://mern-ecommerce-peach-gamma.vercel.app", 
     credentials: true 
 }));
 
