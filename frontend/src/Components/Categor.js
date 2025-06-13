@@ -1,8 +1,6 @@
 import React, { useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-import {LazyLoadImage} from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css'
 
 // Import Swiper styles
 import 'swiper/css';
@@ -18,7 +16,7 @@ const Categor = () => {
     <div className='w-full bg-slate-200 lg:px-20 lg:py-4'>
         <div className='bg-white w-full hidden lg:flex'>
             <div>
-                <LazyLoadImage loading='lazy' effect='blur' src='/left-aside.png' />
+                <img src='left-aside.png' />
             </div>
 
             <div className='border-r border-gray-200 w-[14rem]'>
@@ -31,7 +29,7 @@ const Categor = () => {
                     </div>
                     
                     <div className='flex justify-end items-end'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/1.jpg' />
+                    <img className='w-20 flex items-end justify-end' src='1.jpg' />
                     </div>
 
                 </div>
@@ -45,7 +43,7 @@ const Categor = () => {
                     </div>
                     
                     <div className='flex justify-end items-end'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/9.jpg' />
+                    <img className='w-20 flex items-end justify-end' src='9.jpg' />
                     </div>
 
                 </div>
@@ -61,7 +59,7 @@ const Categor = () => {
                     </div>
                     
                     <div className='flex justify-end items-end'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/1.jpg' />
+                    <img className='w-20 flex items-end justify-end' src='1.jpg' />
                     </div>
 
                 </div>
@@ -75,7 +73,7 @@ const Categor = () => {
                     </div>
                     
                     <div className='flex justify-end items-end'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/9.jpg' />
+                    <img className='w-20 flex items-end justify-end' src='9.jpg' />
                     </div>
 
                 </div>
@@ -91,7 +89,7 @@ const Categor = () => {
                     </div>
                     
                     <div className='flex justify-end items-end'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/1.jpg' />
+                    <img className='w-20 flex items-end justify-end' src='1.jpg' />
                     </div>
 
                 </div>
@@ -105,7 +103,7 @@ const Categor = () => {
                     </div>
                     
                     <div className='flex justify-end items-end'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/9.jpg' />
+                    <img className='w-20 flex items-end justify-end' src='9.jpg' />
                     </div>
 
                 </div>
@@ -121,7 +119,7 @@ const Categor = () => {
                     </div>
                     
                     <div className='flex justify-end items-end'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/1.jpg' />
+                    <img className='w-20 flex items-end justify-end' src='1.jpg' />
                     </div>
 
                 </div>
@@ -135,7 +133,7 @@ const Categor = () => {
                     </div>
                     
                     <div className='flex justify-end items-end'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/9.jpg' />
+                    <img className='w-20 flex items-end justify-end' src='9.jpg' />
                     </div>
 
                 </div>
@@ -148,7 +146,7 @@ const Categor = () => {
     <div className='w-full bg-slate-200 lg:px-20 lg:py-2'>
         <div className='bg-white w-full hidden lg:flex'>
             <div>
-                <LazyLoadImage loading='lazy' effect='blur' src='/left-side.png' />
+                <img src='left-side.png' />
             </div>
 
             <div className='border-r border-gray-200 w-[14rem]'>
@@ -161,7 +159,7 @@ const Categor = () => {
                     </div>
                     
                     <div className='flex justify-end items-end'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/1.jpg' />
+                    <img className='w-20 flex items-end justify-end' src='1.jpg' />
                     </div>
 
                 </div>
@@ -175,7 +173,7 @@ const Categor = () => {
                     </div>
                     
                     <div className='flex justify-end items-end'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/9.jpg' />
+                    <img className='w-20 flex items-end justify-end' src='9.jpg' />
                     </div>
 
                 </div>
@@ -191,7 +189,7 @@ const Categor = () => {
                     </div>
                     
                     <div className='flex justify-end items-end'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/1.jpg' />
+                    <img className='w-20 flex items-end justify-end' src='1.jpg' />
                     </div>
 
                 </div>
@@ -205,7 +203,7 @@ const Categor = () => {
                     </div>
                     
                     <div className='flex justify-end items-end'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/9.jpg' />
+                    <img className='w-20 flex items-end justify-end' src='9.jpg' />
                     </div>
 
                 </div>
@@ -221,7 +219,7 @@ const Categor = () => {
                     </div>
                     
                     <div className='flex justify-end items-end'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/1.jpg' />
+                    <img className='w-20 flex items-end justify-end' src='1.jpg' />
                     </div>
 
                 </div>
@@ -235,7 +233,7 @@ const Categor = () => {
                     </div>
                     
                     <div className='flex justify-end items-end'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/9.jpg' />
+                    <img className='w-20 flex items-end justify-end' src='9.jpg' />
                     </div>
 
                 </div>
@@ -251,7 +249,7 @@ const Categor = () => {
                     </div>
                     
                     <div className='flex justify-end items-end'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/1.jpg' />
+                    <img className='w-20 flex items-end justify-end' src='1.jpg' />
                     </div>
 
                 </div>
@@ -265,7 +263,7 @@ const Categor = () => {
                     </div>
                     
                     <div className='flex justify-end items-end'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/9.jpg' />
+                    <img className='w-20 flex items-end justify-end' src='9.jpg' />
                     </div>
 
                 </div>
@@ -291,7 +289,7 @@ const Categor = () => {
                     <SwiperSlide>
                    <div>
                     <div className='flex'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='/1.jpg' />
+                    <img className='w-20 flex' src='1.jpg' />
                     </div>
                     <p className='text-start text-sm'>Soft chairs</p>
                     <p className='text-start text-gray-400 text-xs'>From USD 19</p>
@@ -302,7 +300,7 @@ const Categor = () => {
       <SwiperSlide>
       <div>
                     <div className='flex'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='/9.jpg' />
+                    <img className='w-20 flex' src='9.jpg' />
                     </div>
                     <p className='text-start text-sm'>Kitchen mixer</p>
                     <p className='text-start text-gray-400 text-xs'>From USD 19</p>
@@ -312,7 +310,7 @@ const Categor = () => {
       <SwiperSlide>
       <div>
                     <div className='flex'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='/1.jpg' />
+                    <img className='w-20 flex' src='1.jpg' />
                     </div>
                     <p className='text-start text-sm'>Soft chairs</p>
                     <p className='text-start text-gray-400 text-xs'>From USD 19</p>
@@ -322,7 +320,7 @@ const Categor = () => {
       <SwiperSlide>
       <div>
                     <div className='flex'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='/1.jpg' />
+                    <img className='w-20 flex' src='1.jpg' />
                     </div>
                     <p className='text-start text-sm'>Soft chairs</p>
                     <p className='text-start text-gray-400 text-xs'>From USD 19</p>
@@ -332,7 +330,7 @@ const Categor = () => {
       <SwiperSlide>
       <div>
                     <div className='flex'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='/1.jpg' />
+                    <img className='w-20 flex' src='1.jpg' />
                     </div>
                     <p className='text-start text-sm'>Soft chairs</p>
                     <p className='text-start text-gray-400 text-xs'>From USD 19</p>
@@ -356,7 +354,7 @@ const Categor = () => {
                     <SwiperSlide>
                    <div>
                     <div className='flex'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='/1.jpg' />
+                    <img className='w-20 flex' src='1.jpg' />
                     </div>
                     <p className='text-start text-sm'>Soft chairs</p>
                     <p className='text-start text-gray-400 text-xs'>From USD 19</p>
@@ -367,7 +365,7 @@ const Categor = () => {
       <SwiperSlide>
       <div>
                     <div className='flex'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='/9.jpg' />
+                    <img className='w-20 flex' src='9.jpg' />
                     </div>
                     <p className='text-start text-sm'>Kitchen mixer</p>
                     <p className='text-start text-gray-400 text-xs'>From USD 19</p>
@@ -377,7 +375,7 @@ const Categor = () => {
       <SwiperSlide>
       <div>
                     <div className='flex'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='/1.jpg' />
+                    <img className='w-20 flex' src='1.jpg' />
                     </div>
                     <p className='text-start text-sm'>Soft chairs</p>
                     <p className='text-start text-gray-400 text-xs'>From USD 19</p>
@@ -387,7 +385,7 @@ const Categor = () => {
       <SwiperSlide>
       <div>
                     <div className='flex'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='/1.jpg' />
+                    <img className='w-20 flex' src='1.jpg' />
                     </div>
                     <p className='text-start text-sm'>Soft chairs</p>
                     <p className='text-start text-gray-400 text-xs'>From USD 19</p>
@@ -397,7 +395,7 @@ const Categor = () => {
       <SwiperSlide>
       <div>
                     <div className='flex'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='1.jpg' />
+                    <img className='w-20 flex' src='1.jpg' />
                     </div>
                     <p className='text-start text-sm'>Soft chairs</p>
                     <p className='text-start text-gray-400 text-xs'>From USD 19</p>
