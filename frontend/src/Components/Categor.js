@@ -121,7 +121,7 @@ const Categor = () => {
                     </div>
                     
                     <div className='flex justify-end items-end'>
-                    <img loading='lazy' className='w-20 flex items-end justify-end' src='clay-handi.jpg' />
+                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/clay-handi.jpg' />
                     </div>
 
                 </div>
@@ -135,7 +135,7 @@ const Categor = () => {
                     </div>
                     
                     <div className='flex justify-end items-end'>
-                    <img loading='lazy' className='w-20 flex items-end justify-end' src='./air-mattress.jpg' />
+                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/air-mattress.jpg' />
                     </div>
 
                 </div>
@@ -145,10 +145,10 @@ const Categor = () => {
 
     </div>
 
-    <div className='w-full bg-slate-200 lg:px-20 lg:py-2'>
+    <div className='w-full bg-slate-200 lg:px-20 lg:py-4'>
         <div className='bg-white w-full hidden lg:flex'>
             <div>
-                <LazyLoadImage loading='lazy' effect='blur' src='/left-side.png' />
+                <LazyLoadImage loading='lazy' effect='blur' src='/left-aside.png' />
             </div>
 
             <div className='border-r border-gray-200 w-[14rem]'>
@@ -161,7 +161,7 @@ const Categor = () => {
                     </div>
                     
                     <div className='flex justify-end items-end'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/1.jpg' />
+                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/sofa-chair.jpg' />
                     </div>
 
                 </div>
@@ -175,7 +175,7 @@ const Categor = () => {
                     </div>
                     
                     <div className='flex justify-end items-end'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/9.jpg' />
+                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/kitchen-mixer.jpg' />
                     </div>
 
                 </div>
@@ -184,28 +184,28 @@ const Categor = () => {
             <div className='border-r border-gray-200 w-[14rem]'>
                 <div className='flex px-2 py-2 justify-between h-[8rem] border-b'>
                     <div>
-                    <p className='text-start'>Sofa & chair</p>
+                    <p className='text-start'>Flowers Vase</p>
                     <p className='text-start text-gray-400 pt-2 text-xs'>From</p>
-                    <p className='text-start text-xs text-gray-400'>USD 19</p>
+                    <p className='text-start text-xs text-gray-400'>USD 12</p>
 
                     </div>
                     
                     <div className='flex justify-end items-end'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/1.jpg' />
+                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/flowers-vase.jpg' />
                     </div>
 
                 </div>
 
                 <div className='flex px-2 py-2 justify-between h-[8rem]'>
                     <div>
-                    <p className='text-start'>Kitchen mixer</p>
+                    <p className='text-start'>Lamp</p>
                     <p className='text-start text-gray-400 pt-2 text-xs'>From</p>
-                    <p className='text-start text-xs text-gray-400'>USD 100</p>
+                    <p className='text-start text-xs text-gray-400'>USD 22</p>
 
                     </div>
                     
                     <div className='flex justify-end items-end'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/9.jpg' />
+                    <LazyLoadImage className='w-20 flex items-end justify-end' src='/lamp.jpg' loading='lazy' effect='blur' />
                     </div>
 
                 </div>
@@ -214,28 +214,28 @@ const Categor = () => {
             <div className='border-r border-gray-200 w-[14rem]'>
                 <div className='flex px-2 py-2 justify-between h-[8rem] border-b'>
                     <div>
-                    <p className='text-start'>Soft chairs</p>
+                    <p className='text-start'>Folding Chair</p>
                     <p className='text-start text-gray-400 pt-2 text-xs'>From</p>
-                    <p className='text-start text-xs text-gray-400'>USD 19</p>
+                    <p className='text-start text-xs text-gray-400'>USD 110</p>
 
                     </div>
                     
                     <div className='flex justify-end items-end'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/1.jpg' />
+                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/folding-chair.jpg' />
                     </div>
 
                 </div>
 
                 <div className='flex px-2 py-2 justify-between h-[8rem]'>
                     <div>
-                    <p className='text-start'>Kitchen mixer</p>
+                    <p className='text-start'>Coffee Maker</p>
                     <p className='text-start text-gray-400 pt-2 text-xs'>From</p>
-                    <p className='text-start text-xs text-gray-400'>USD 100</p>
+                    <p className='text-start text-xs text-gray-400'>USD 150</p>
 
                     </div>
                     
                     <div className='flex justify-end items-end'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/9.jpg' />
+                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/coffee-maker.jpg' />
                     </div>
 
                 </div>
@@ -244,28 +244,28 @@ const Categor = () => {
             <div className='border-gray-200 w-[14rem]'>
                 <div className='flex px-2 py-2 justify-between h-[8rem] border-b'>
                     <div>
-                    <p className='text-start'>Soft chairs</p>
+                    <p className='text-start'>Clay Handi</p>
                     <p className='text-start text-gray-400 pt-2 text-xs'>From</p>
-                    <p className='text-start text-xs text-gray-400'>USD 19</p>
+                    <p className='text-start text-xs text-gray-400'>USD 25</p>
 
                     </div>
                     
                     <div className='flex justify-end items-end'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/1.jpg' />
+                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/clay-handi.jpg' />
                     </div>
 
                 </div>
 
                 <div className='flex px-2 py-2 justify-between h-[8rem]'>
                     <div>
-                    <p className='text-start'>Kitchen mixer</p>
+                    <p className='text-start'>Air Mattress</p>
                     <p className='text-start text-gray-400 pt-2 text-xs'>From</p>
                     <p className='text-start text-xs text-gray-400'>USD 100</p>
 
                     </div>
                     
                     <div className='flex justify-end items-end'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/9.jpg' />
+                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex items-end justify-end' src='/air-mattress.jpg' />
                     </div>
 
                 </div>
@@ -288,31 +288,11 @@ const Categor = () => {
                   modules={[Pagination]}
                   className="mySwiper"
                 >
-                    <SwiperSlide>
-                   <div>
-                    <div className='flex'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='/1.jpg' />
-                    </div>
-                    <p className='text-start text-sm'>Soft chairs</p>
-                    <p className='text-start text-gray-400 text-xs'>From USD 19</p>
-
-                    </div>
                     
-      </SwiperSlide>
       <SwiperSlide>
       <div>
                     <div className='flex'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='/9.jpg' />
-                    </div>
-                    <p className='text-start text-sm'>Kitchen mixer</p>
-                    <p className='text-start text-gray-400 text-xs'>From USD 19</p>
-
-                    </div>
-      </SwiperSlide>
-      <SwiperSlide>
-      <div>
-                    <div className='flex'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='/1.jpg' />
+                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='/sofa-chair.jpg' />
                     </div>
                     <p className='text-start text-sm'>Soft chairs</p>
                     <p className='text-start text-gray-400 text-xs'>From USD 19</p>
@@ -322,20 +302,20 @@ const Categor = () => {
       <SwiperSlide>
       <div>
                     <div className='flex'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='/1.jpg' />
+                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='/kitchen-mixer.jpg' />
                     </div>
-                    <p className='text-start text-sm'>Soft chairs</p>
-                    <p className='text-start text-gray-400 text-xs'>From USD 19</p>
+                    <p className='text-start text-sm'>Kitchen Mixer</p>
+                    <p className='text-start text-gray-400 text-xs'>From USD 110</p>
 
                     </div>
       </SwiperSlide>
       <SwiperSlide>
       <div>
                     <div className='flex'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='/1.jpg' />
+                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='/flowers-vase.jpg' />
                     </div>
-                    <p className='text-start text-sm'>Soft chairs</p>
-                    <p className='text-start text-gray-400 text-xs'>From USD 19</p>
+                    <p className='text-start text-sm'>Flowers Vase</p>
+                    <p className='text-start text-gray-400 text-xs'>From USD 12</p>
 
                     </div>
       </SwiperSlide>
@@ -356,10 +336,10 @@ const Categor = () => {
                     <SwiperSlide>
                    <div>
                     <div className='flex'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='/1.jpg' />
+                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='/lamp.jpg' />
                     </div>
-                    <p className='text-start text-sm'>Soft chairs</p>
-                    <p className='text-start text-gray-400 text-xs'>From USD 19</p>
+                    <p className='text-start text-sm'>Lamp</p>
+                    <p className='text-start text-gray-400 text-xs'>From USD 22</p>
 
                     </div>
                     
@@ -367,40 +347,40 @@ const Categor = () => {
       <SwiperSlide>
       <div>
                     <div className='flex'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='/9.jpg' />
+                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='/folding-chair.jpg' />
                     </div>
-                    <p className='text-start text-sm'>Kitchen mixer</p>
-                    <p className='text-start text-gray-400 text-xs'>From USD 19</p>
+                    <p className='text-start text-sm'>Folding Chair</p>
+                    <p className='text-start text-gray-400 text-xs'>From USD 110</p>
 
                     </div>
       </SwiperSlide>
       <SwiperSlide>
       <div>
                     <div className='flex'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='/1.jpg' />
+                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='/coffee-maker.jpg' />
                     </div>
-                    <p className='text-start text-sm'>Soft chairs</p>
-                    <p className='text-start text-gray-400 text-xs'>From USD 19</p>
+                    <p className='text-start text-sm'>Coffee Maker</p>
+                    <p className='text-start text-gray-400 text-xs'>From USD 150</p>
 
                     </div>
       </SwiperSlide>
       <SwiperSlide>
       <div>
                     <div className='flex'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='/1.jpg' />
+                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='/clay-handi.jpg' />
                     </div>
-                    <p className='text-start text-sm'>Soft chairs</p>
-                    <p className='text-start text-gray-400 text-xs'>From USD 19</p>
+                    <p className='text-start text-sm'>Clay Handi</p>
+                    <p className='text-start text-gray-400 text-xs'>From USD 25</p>
 
                     </div>
       </SwiperSlide>
       <SwiperSlide>
       <div>
                     <div className='flex'>
-                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='/1.jpg' />
+                    <LazyLoadImage loading='lazy' effect='blur' className='w-20 flex' src='/air-mattress.jpg' />
                     </div>
-                    <p className='text-start text-sm'>Soft chairs</p>
-                    <p className='text-start text-gray-400 text-xs'>From USD 19</p>
+                    <p className='text-start text-sm'>Air Mattress</p>
+                    <p className='text-start text-gray-400 text-xs'>From USD 100</p>
 
                     </div>
       </SwiperSlide>
